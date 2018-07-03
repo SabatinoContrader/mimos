@@ -2,7 +2,7 @@ package main.view;
 
 import main.MainDispatcher;
 import main.controller.Request;
-import sun.applet.Main;
+//import sun.applet.Main;
 
 import java.util.Scanner;
 
