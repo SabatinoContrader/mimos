@@ -4,5 +4,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Contrader18_016/ContraderConsole/mimos/mysql-connector-java-8.0.11.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Contrader18_016/ContraderConsole/mimos/spring-jdbc-5.0.7.RELEASE.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Contrader18_016/ContraderConsole/mimos/com.mysql.jdbc_5.1.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
