@@ -5,16 +5,28 @@ import service.LoginService;
 
 public class LoginController implements Controller {
 
+	private Request request;
 	private LoginService loginService;
-    public LoginController() {
-    }
 
-    public void doControl (Request request) {
-    	String username = request.get("nomeUtente").toString();
-    	String password = request.get("password").toString();
-    	if(loginService.login(username, password)) {
-        MainDispatcher.getInstance().callView("Login", request);
-    	}
-    	else MainDispatcher.getInstance().callView("Login", request);
-    }
+	public LoginController() {
+		request = new Request();
+		loginService = new LoginService();
+	}
+
+	public void doControl(Request request) {
+		if (request != null) {
+			String nomeUtente = request.get("nomeUtente").toString();
+			String password = request.get("password").toString();
+			
+			boolean tmp = loginService.login(nomeUtente, password);
+			if (tmp) {
+				MainDispatcher.getInstance().callView("Home", null);
+			}
+			else {
+				this.request.put("result", tmp);
+				MainDispatcher.getInstance().callView("Login", this.request);
+			}
+		} else
+			MainDispatcher.getInstance().callView("Login", null);
+	}
 }

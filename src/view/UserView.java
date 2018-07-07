@@ -24,6 +24,7 @@ public class UserView implements View {
     	//qui non ho compreso bene ma ci carico la request in entrata
     	//predo il mode e lo memorizzo?
     	this.request = request;
+        System.out.println("----- USER TAB -----");
     }
 
     @Override
@@ -39,6 +40,7 @@ public class UserView implements View {
                 }
                 break;
             case "insert":
+                System.out.println("----- REGISTRAZIONE -----");
             	List<String> attributi = new ArrayList<>();
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Inserisci i dati del nuovo utente o aggiungi ruolo:");
@@ -66,7 +68,6 @@ public class UserView implements View {
                 request.put("choice", "newuser");
                 request.put("data", attributi);
                 dp = new DispatcherParam("User", "doControl", this.request);
-                break;
         }
     }
 

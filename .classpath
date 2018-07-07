@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Contrader18_016/ContraderConsole/mimos/mysql-connector-java-8.0.11.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Contrader18_016/ContraderConsole/mimos/spring-jdbc-5.0.7.RELEASE.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Contrader18_016/ContraderConsole/mimos/com.mysql.jdbc_5.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/junit-jupiter-api-5.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/opentest4j-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-aop-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-aspects-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-beans-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-context-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-context-support-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-core-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-data-jpa-1.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-expression-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-instrument-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-instrument-tomcat-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-jdbc-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-jms-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-messaging-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-orm-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-oxm-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-test-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-tx-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-web-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-webmvc-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-webmvc-portlet-4.3.12.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Contrader18_016/ContraderConsole_old/mimos/lib/spring-websocket-4.3.12.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
