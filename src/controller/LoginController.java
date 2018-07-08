@@ -20,7 +20,11 @@ public class LoginController implements Controller {
 			
 			boolean tmp = loginService.login(nomeUtente, password);
 			if (tmp) {
-				MainDispatcher.getInstance().callView("Home", null);
+				this.request = new Request();
+				this.request.put("mode", "entry");
+				this.request.put("nomeUtente", nomeUtente);
+				this.request.put("password", password);
+				MainDispatcher.getInstance().callView("Home", this.request);
 			}
 			else {
 				this.request.put("result", tmp);

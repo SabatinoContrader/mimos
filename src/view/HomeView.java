@@ -1,5 +1,6 @@
 package view;
 
+import main.DispatcherParam;
 import main.MainDispatcher;
 import controller.Request;
 import sun.applet.Main;
@@ -8,42 +9,42 @@ import java.util.Scanner;
 
 public class HomeView implements View {
 
-    private int choice;
+	private Request request;
+	private DispatcherParam dp;
+	private int choice;
 
-    public void showResults(Request request) {
+	public void showResults(Request request) {
+		if (request.get("mode").toString().equals("entry")) {
+			System.out.println("\n" + "-----DASHBOARD MIMOS-----" + "\n");
+			System.out.println("BENVENUTO " + request.getString("nomeUtente") + "\n");
+			this.request = new Request();
+			this.request.put("mode", "getrole");
+			this.request.put("nick", request.get("nick"));
+		}
+	}
 
-    }
+	public void showOptions() {
+		switch (request.get("mode").toString()) {
+			case ("entry"):
+				dp = new DispatcherParam("User", "doControl", this.request);
+				break;
+			case ("select"):
+				System.out.println("\n" + "Vuoi accedere come:" + "\n");
+				break;
+			case ("selected"):
+				break;
+			case ("logout"):
+				break;
+		}
+	}
 
+	public void submit() {
+			MainDispatcher.getInstance().callAction(dp.getClassN(), dp.getMethodN(), dp.getRequest());
+	}
 
-    public void showOptions() {
-        System.out.println("Benvenuto in ContraderFramework");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("-------MENU-------");
-        System.out.println("");
-        System.out.println("1) Inserisci gomma");
-        System.out.println("2) Visualizza gomme disponibili");
-        System.out.println("3) Logout");
-        this.choice = Integer.parseInt(getInput());
-    }
-
-    public void submit() {
-        if (choice < 1 || choice > 3)
-            MainDispatcher.getInstance().callAction("Home", "doControl", null);
-        else if (choice == 3)
-            MainDispatcher.getInstance().callAction("Login", "doControl", null);
-        else {
-            Request request = new Request();
-            request.put("choice", choice);
-            MainDispatcher.getInstance().callAction("Gomma", "doControl", request);
-        }
-    }
-
-
-    public String getInput() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
-
+	public String getInput() {
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine();
+	}
 
 }

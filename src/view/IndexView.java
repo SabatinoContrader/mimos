@@ -12,11 +12,13 @@ public class IndexView implements View {
 	private DispatcherParam dp;
 
 	public void showResults(Request request) {
-		this.request = new Request();
+		if (request != null && !(boolean) request.get("result"))
+			System.out.println("\n" + "INSERIMENTO NON RIUSCITO" + "\n");
 		System.out.println("\n" + "-----WELCOME TO MIMOS----" + "\n");
 	}
 
 	public void showOptions() {
+		this.request = new Request();
 		System.out.println("(1) LogIn");
 		System.out.println("(2) SignUp" + "\n");
 		System.out.print("Inserisci il numero corrispondente: ");
@@ -29,7 +31,7 @@ public class IndexView implements View {
 				dp = new DispatcherParam("Login", "doControl", null);
 				break;
 			case ("2"):
-				this.request.put("mode", tmp);
+				this.request.put("mode", "insert");
 				dp = new DispatcherParam("User", "doControl", request);
 		}
 	}

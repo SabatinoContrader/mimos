@@ -65,7 +65,7 @@ public class UserView implements View {
                 System.out.println("(A) E' root");
                 attributi.add(getInput());
                 request = new Request();
-                request.put("choice", "newuser");
+                request.put("mode", "newuser");
                 request.put("data", attributi);
                 dp = new DispatcherParam("User", "doControl", this.request);
         }

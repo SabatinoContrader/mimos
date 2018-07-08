@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MainTest {
+public class SimpleConnection {
 
 	static Connection conn = null;
 
@@ -29,13 +29,6 @@ public class MainTest {
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
-
-		/*
-		 * try { conn = (Connection)
-		 * DriverManager.getConnection("jdbc:myslq://127.0.0.1:3306/mimos", "root",
-		 * "root"); if (conn != null) { System.out.println("hey hey hey"); } } catch
-		 * (SQLException e) { // TODO Auto-generated catch block e.printStackTrace(); }
-		 */
 	}
 
 }

@@ -22,6 +22,10 @@ public class UserService {
         return this.userDAO.getAllUsers();
     }
 
+    public List<String> getUserRole (String nick) {
+        return this.userDAO.getUserRole(nick);
+    }
+
     public boolean insertPatient (Patient user) {
         return this.userDAO.insertPatient(user);
     }
