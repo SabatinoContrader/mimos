@@ -11,21 +11,21 @@ public class HomeView implements View {
 
 	private Request request;
 	private DispatcherParam dp;
-	private int choice;
 
 	public void showResults(Request request) {
 		if (request.get("mode").toString().equals("entry")) {
 			System.out.println("\n" + "-----DASHBOARD MIMOS-----" + "\n");
 			System.out.println("BENVENUTO " + request.getString("nomeUtente") + "\n");
-			this.request = new Request();
-			this.request.put("mode", "getrole");
-			this.request.put("nick", request.get("nick"));
+			this.request = request;
 		}
 	}
 
 	public void showOptions() {
 		switch (request.get("mode").toString()) {
 			case ("entry"):
+				this.request = new Request();
+				this.request.put("mode", "getrole");
+				this.request.put("nick", request.get("nick"));
 				dp = new DispatcherParam("User", "doControl", this.request);
 				break;
 			case ("select"):
