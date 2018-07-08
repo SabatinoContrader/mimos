@@ -2,7 +2,7 @@ package dao;
 
 public enum Role {
 	Patient,
-	Administrator,
+	MAdmin,
 	Doctor,
 	Pharmacist;
 }

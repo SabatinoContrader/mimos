@@ -1,26 +1,34 @@
 package controller;
 
+import main.DispatcherParam;
 import main.MainDispatcher;
 import service.LoginService;
 
 public class HomeController implements Controller {
 
-    private LoginService loginService;
 
-    public HomeController() {
-        loginService = new LoginService();
+    private DispatcherParam dp;
+	private Request request;
+
+	public HomeController() {
     }
 
     public void doControl(Request request) {
         if (request != null) {
-            String nomeUtente = request.get("nomeUtente").toString();
-            String password = request.get("password").toString();
-            if (loginService.login(nomeUtente, password))
-                MainDispatcher.getInstance().callView("Home", request);
-            else
-                MainDispatcher.getInstance().callAction("Login", "doControl", request);
+        	switch (String.valueOf(request.get("mode"))) {
+        	case ("select"):
+        		this.request = request;
+				dp = new DispatcherParam("Home", this.request);
+        		break;
+        	case ("selected"):
+        		this.request = request;
+				dp = new DispatcherParam("Home", this.request);
+        		break;
+        	case ("logout"):
+        		
+        	}
         }
-        else MainDispatcher.getInstance().callView("Home", null);
+        MainDispatcher.getInstance().callView(dp.getClassN(), dp.getRequest());
 
     }
 }

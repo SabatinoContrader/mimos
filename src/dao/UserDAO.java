@@ -19,9 +19,11 @@ public class UserDAO {
 	private final String QUERY_INSERT_GENERIC = "insert into MUser (nick, psw, sName, lName) values (?,?,?,?)";
 	private String QUERY_INSERT_SPEC;
 	private final String QUERY_GETID = "select MUser.idUnique, MUser.nick from MUser";
-	private final String QUERY_VERIFY = "SELECT MUser.nick FROM ? "
+	private final String QUERY_VERIFY_NICK = "SELECT MUser.nick FROM $tableName "
 			+ "LEFT OUTER JOIN MUser ON MUser.idUnique = ?.IdUnique"
 			+ "WHERE muser.nick = '?'";
+	private final String QUERY_VERIFY_ID = "SELECT idUnique FROM $tableName "
+			+ "WHERE idUnique = ?";
 
 	public UserDAO() {
 
@@ -36,15 +38,21 @@ public class UserDAO {
 		try {
 			PreparedStatement preparedStatement;
 			//uso un foreach per i valor del Role enum
+			ResultSet res = null;
 			for (Role r: Role.values()) {
 				// creo il MUser
-				preparedStatement = connection.prepareStatement(QUERY_VERIFY);
-				preparedStatement.setString(1, r.toString());
-				preparedStatement.setString(2, r.toString());
-				preparedStatement.setString(3, nick);
-				Boolean result = preparedStatement.execute();
-				if (result)
-					data.add(r.toString());
+				String query = QUERY_VERIFY_ID.replace("$tableName",r.name());
+				//System.out.println(query);
+				preparedStatement = connection.prepareStatement(query);
+				//non si può passare il nome della tabella in string
+				preparedStatement.setInt(1, id);
+				//boolean result = preparedStatement.execute();
+				//System.out.println(preparedStatement);
+				res = preparedStatement.executeQuery();
+				//System.out.println(res);
+				while (res.next())
+					if (!res.wasNull())
+						data.add(r.toString());
 			}
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);

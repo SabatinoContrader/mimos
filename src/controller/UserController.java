@@ -46,7 +46,7 @@ public class UserController implements Controller {
                 break;
             case "getrole":
             	List<String> role;
-                role = userService.getUserRole(request.getString("nick"));
+                role = userService.getUserRole(request.getString("nomeUtente"));
                 this.request.put("mode", "select");
             	this.request.put("role", role);
             	dp =  new DispatcherParam("Home", this.request);
