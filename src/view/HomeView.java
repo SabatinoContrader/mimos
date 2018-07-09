@@ -11,7 +11,7 @@ public class HomeView implements View {
 
 	private Request request;
 	private DispatcherParam dp;
-	private String nick;
+	private String nick, role;
 
 	public void showResults(Request request) {
 		this.request = request;
@@ -26,7 +26,15 @@ public class HomeView implements View {
 		}
 		if (request.get("mode").toString().equals("selected")) {
 			nick = request.getString("nomeUtente");
-			System.out.println("\n" + "-----OPZIONI " + request.getString("typeUser").toUpperCase() + " MIMOS-----" + "\n");
+			System.out.println(
+					"\n" + "-----OPZIONI " + request.getString("typeUser").toUpperCase() + " MIMOS-----" + "\n");
+		}
+		if (request.get("mode").toString().equals("option")) {
+			nick = request.getString("nomeUtente");
+			role = request.getString("typeUser");
+			System.out.println(
+					"\n" + "Dati di " + request.getString("nomeUtente").toUpperCase() + " come " + 
+							request.getString("typeUser").toUpperCase() + "\n");
 		}
 	}
 
@@ -35,6 +43,7 @@ public class HomeView implements View {
 		switch (request.get("mode").toString()) {
 			case ("entry"):
 				this.nick = this.request.getString("nomeUtente");
+				this.role = this.request.getString("typeUser");
 				this.request = new Request();
 				this.request.put("mode", "getrole");
 				this.request.put("nomeUtente", nick);
@@ -44,35 +53,46 @@ public class HomeView implements View {
 				@SuppressWarnings("unchecked")
 				ArrayList<String> roles = (ArrayList<String>) this.request.get("role");
 				this.showRole(roles);
-			try {
-				choice = Integer.parseInt(getInput());
-				this.request = new Request();
-				this.request.put("nomeUtente", this.nick);
-				this.request.put("mode", "selected");
-				this.request.put("typeUser", roles.get(choice));
-			} catch (Exception e) {
-				System.out.println("SCELTA ERRATA");
-
-				//e.printStackTrace();
-				this.request = new Request();
-				this.request.put("nomeUtente", this.nick);
-				this.request.put("mode", "select");
-				this.request.put("role", roles);
-				dp = new DispatcherParam("Home", "doControl", this.request);
-			}
+				try {
+					choice = Integer.parseInt(getInput());
+					this.request = new Request();
+					this.request.put("nomeUtente", this.nick);
+					this.request.put("mode", "selected");
+					this.request.put("typeUser", roles.get(choice));
+				} catch (Exception e) {
+					System.out.println("SCELTA ERRATA");
+					// e.printStackTrace();
+					this.request = new Request();
+					this.request.put("nomeUtente", this.nick);
+					this.request.put("mode", "select");
+					this.request.put("typeUser", roles);
+					dp = new DispatcherParam("Home", "doControl", this.request);
+				}
 				dp = new DispatcherParam("Home", "doControl", this.request);
 				break;
 			case ("selected"):
 				this.showDashRole(String.valueOf(this.request.get("typeUser")));
+				this.role = this.request.getString("typeUser");
 				System.out.println("\n" + "Scegli operazione (numero):");
 				choice = Integer.parseInt(getInput());
 				this.request = new Request();
 				this.request.put("nomeUtente", this.nick);
+				this.request.put("typeUser", this.role);
 				this.request.put("mode", "option");
 				this.request.put("choice", choice);
 				dp = new DispatcherParam("Home", "doControl", this.request);
 				break;
 			case ("option"):
+				switch (request.get("choice").toString()) {
+					case ("3"):
+						this.showParameter((ArrayList<String>) request.get("dataUser"));
+						this.request = new Request();
+						this.request.put("nomeUtente", this.nick);
+						this.request.put("typeUser", this.role);
+						this.request.put("mode", "selected");
+						dp = new DispatcherParam("Home", "doControl", this.request);
+						break;
+				}
 				break;
 			case ("logout"):
 				break;
@@ -102,7 +122,7 @@ public class HomeView implements View {
 				break;
 			}
 		}
-		
+
 	}
 
 	private void showRole(ArrayList<String> roles) {
@@ -112,6 +132,15 @@ public class HomeView implements View {
 			count++;
 		}
 		System.out.print("\n" + "Seleziona Ruolo (numero) : ");
+	}
+
+	private void showParameter(ArrayList<String> param) {
+		int count = 0;
+		for (String p : param) {
+			System.out.println(p + " (" + count + ")");
+			count++;
+		}
+		System.out.print("\n" + "-----------------------------");
 	}
 
 	public void submit() {
