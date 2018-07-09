@@ -49,6 +49,7 @@ public class UserController implements Controller {
                 role = userService.getUserRole(request.getString("nomeUtente"));
                 this.request.put("mode", "select");
             	this.request.put("role", role);
+            	this.request.put("nomeUtente", request.getString("nomeUtente"));
             	dp =  new DispatcherParam("Home", this.request);
                 break;
         }
