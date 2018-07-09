@@ -49,6 +49,10 @@ public class UserService {
     public boolean insertPharmacist (Pharmacist user) {
         return this.userDAO.insertPharmacist(user);
     }
+
+	public boolean deleteUser(String user) {
+        return this.userDAO.deleteUser(user);
+	}
 }
 
 

@@ -134,6 +134,12 @@ public class HomeView implements View {
 						dp = new DispatcherParam("Home", "doControl", this.request);
 						break;
 					case ("4"):
+						this.request = new Request();
+						this.request.put("nomeUtente", this.nick);
+						this.request.put("mode", "delete");
+						dp = new DispatcherParam("User", "doControl", this.request);
+						break;
+					case ("5"):
 						dp = new DispatcherParam("Index", "doControl", null);
 				}
 				break;
@@ -146,23 +152,24 @@ public class HomeView implements View {
 		System.out.println("(1) Aggiorna Dati");
 		System.out.println("(2) Aggiungi Ruolo - ToDo");
 		System.out.println("(3) Guarda i tuoi dati");
-		System.out.println("(4) Logout");
+		System.out.println("(4) Cancella Account");
+		System.out.println("(5) Logout");
 		for (Role role : Role.values()) {
 			if (role.Doctor.toString().equals(typeUser)) {
-				System.out.println("(5) Visualizza Misurazioni - ToDo");
+				System.out.println("(6) Visualizza Misurazioni - ToDo");
 				break;
 			}
 			if (role.Patient.toString().equals(typeUser)) {
-				System.out.println("(5) Effettua Una Misurazione - ToDo");
-				System.out.println("(6) Gaurda Tutte le Misurazioni - ToDo");
+				System.out.println("(6) Effettua Una Misurazione - ToDo");
+				System.out.println("(7) Gaurda Tutte le Misurazioni - ToDo");
 				break;
 			}
 			if (role.MAdmin.toString().equals(typeUser)) {
-				System.out.println("(5) Gaurda Tutti gli User - ToDo");
+				System.out.println("(6) Gaurda Tutti gli User - ToDo");
 				break;
 			}
 			if (role.Pharmacist.toString().equals(typeUser)) {
-				System.out.println("(5) Gaurda Tutte le Ricette - ToDo");
+				System.out.println("(6) Gaurda Tutte le Ricette - ToDo");
 				break;
 			}
 		}

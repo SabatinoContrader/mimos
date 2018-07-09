@@ -75,6 +75,10 @@ public class UserController implements Controller {
         		this.request.put("success", succ);
             	dp =  new DispatcherParam("Home", this.request);
             	break;
+            case "delete":
+            	succ = userService.deleteUser(request.getString("nomeUtente"));
+            	dp =  new DispatcherParam("Index", null);
+            	break;
         }
         MainDispatcher.getInstance().callView(dp.getClassN(), dp.getRequest());
 

@@ -16,6 +16,7 @@ import java.util.List;
 public class UserDAO {
 
 	private final String QUERY_ALL = "select * from MUser";
+	private final String QUERY_DELETE = "delete from MUser where idUnique = ?";
 	private final String QUERY_INSERT_GENERIC = "insert into MUser (nick, psw, sName, lName) values (?,?,?,?)";
 	private String QUERY_INSERT_SPEC = "INSERT INTO mimos.$tableName (idUnique, $columnName) " + 
 			"values (?, ?)";
@@ -97,7 +98,7 @@ public class UserDAO {
 			preparedStatement = connection.prepareStatement(query_added_column);
 			preparedStatement.setString(1, newdata);
 			preparedStatement.setInt(2, id);
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -271,6 +272,25 @@ public class UserDAO {
 			return preparedStatement.execute();
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return false;
+		}
+	}
+
+	public boolean deleteUser(String nick) {
+		int id = this.getIdUniqueByNick(nick);
+		Connection connection = ConnectionSingleton.getInstance();
+
+		try {
+			PreparedStatement preparedStatement;
+			preparedStatement = connection.prepareStatement(QUERY_DELETE);
+			preparedStatement.setInt(1, id);
+			preparedStatement.execute();
+			return true;
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return false;
+		} catch (InsertUserException e1) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e1);
 			return false;
 		}
 	}
