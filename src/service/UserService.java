@@ -21,6 +21,9 @@ public class UserService {
     public List<BaseUser> getAllUsers () {
         return this.userDAO.getAllUsers();
     }
+    public boolean updateData(String nick, String role, String field, String newdata) {
+        return this.userDAO.updateData(nick, role, field, newdata);
+    }
 
     public List<String> getUserRole (String nick) {
         return this.userDAO.getUserRole(nick);

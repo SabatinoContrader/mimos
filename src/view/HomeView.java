@@ -26,6 +26,7 @@ public class HomeView implements View {
 		}
 		if (request.get("mode").toString().equals("selected")) {
 			nick = request.getString("nomeUtente");
+			role = request.getString("typeUser");
 			System.out.println(
 					"\n" + "-----OPZIONI " + request.getString("typeUser").toUpperCase() + " MIMOS-----" + "\n");
 		}
@@ -84,6 +85,21 @@ public class HomeView implements View {
 				break;
 			case ("option"):
 				switch (request.get("choice").toString()) {
+					case ("1"):
+						this.showParameter((ArrayList<String>) request.get("dataUser"));
+						System.out.println("\n" + "Scegli dato (numero):");
+						choice = Integer.parseInt(getInput());
+						System.out.println("\n" + "Scrivi dato:");
+						String newdata = getInput();
+						this.chooseParameter(choice);
+						this.request = new Request();
+						this.request.put("nomeUtente", this.nick);
+						this.request.put("typeUser", this.role);
+						this.request.put("newData", newdata);
+						this.request.put("field", choice);
+						this.request.put("mode", "updateData");
+						dp = new DispatcherParam("User", "doControl", this.request);
+						break;
 					case ("3"):
 						this.showParameter((ArrayList<String>) request.get("dataUser"));
 						this.request = new Request();
@@ -101,7 +117,7 @@ public class HomeView implements View {
 
 	private void showDashRole(String typeUser) {
 		System.out.println("(1) Aggiorna Dati");
-		System.out.println("(2) Aggiungi Ruolo");
+		System.out.println("(2) Aggiungi Ruolo - ToDo");
 		System.out.println("(3) Guarda i tuoi dati");
 		for (Role role : Role.values()) {
 			if (role.Doctor.toString().equals(typeUser)) {
@@ -141,6 +157,12 @@ public class HomeView implements View {
 			count++;
 		}
 		System.out.print("\n" + "-----------------------------");
+	}
+
+	private String chooseParameter(int choose) {
+		
+		System.out.print("\n" + "-----------------------------");
+		return null;
 	}
 
 	public void submit() {

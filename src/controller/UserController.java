@@ -52,6 +52,22 @@ public class UserController implements Controller {
             	this.request.put("nomeUtente", request.getString("nomeUtente"));
             	dp =  new DispatcherParam("Home", this.request);
                 break;
+            case "updateData":
+            	boolean succ = userService.updateData(request.getString("nomeUtente"),
+            			request.getString("typeUser"),
+            			request.getString("field"),
+            			request.getString("newData"));
+            	if (succ) {
+                    this.request.put("mode", "selected");
+                	this.request.put("typeUser", request.getString("typeUser"));
+                	this.request.put("nomeUtente", request.getString("nomeUtente"));
+            		this.request.put("success", succ);
+                	dp =  new DispatcherParam("Home", this.request);
+            	}
+            	else {
+            		
+            	}
+            	break;
         }
         MainDispatcher.getInstance().callView(dp.getClassN(), dp.getRequest());
 

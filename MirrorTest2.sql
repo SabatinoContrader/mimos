@@ -10,8 +10,6 @@ SELECT madmin.idUnique
 FROM madmin
 where madmin.idUnique = 2;
 
-SELECT MUser.nick
-FROM Patient
-LEFT OUTER JOIN MUser ON MUser.idUnique = Patient.IdUnique
-LEFT OUTER JOIN Patient ON Patient.idUnique = Doctor.IdUnique
-WHERE muser.nick = 'hello';
+UPDATE Patient
+SET Patient.healthInsuranceCard = 09812383811
+WHERE idUnique = 2;

@@ -21,12 +21,67 @@ public class UserDAO {
 	private final String QUERY_GETID = "select MUser.idUnique, MUser.nick from MUser";
 	private final String QUERY_VERIFY_NICK = "SELECT MUser.nick FROM $tableName "
 			+ "LEFT OUTER JOIN MUser ON MUser.idUnique = ?.IdUnique"
-			+ "WHERE muser.nick = '?'";
+			+ "WHERE muser.nick = ?";
 	private final String QUERY_VERIFY_ID = "SELECT idUnique FROM $tableName "
+			+ "WHERE idUnique = ?";
+	private final String QUERY_UPDATE = "UPDATE $tableName "
+			+ "SET $columnName = ? "
 			+ "WHERE idUnique = ?";
 
 	public UserDAO() {
 
+	}
+	
+	private String getField(String field, String role) {
+		switch (field) {
+			case ("0"):
+				return "nick";
+			case ("1"):
+				return "psw";
+			case ("2"):
+				return "sName";
+			case ("3"):
+				return "lName";
+			case ("4"):
+				switch (role) {
+					case ("Patient"):
+						return "healthInsuranceCard";
+					case ("MAdmin"):
+						return "isRoot";
+					case ("Doctor"):
+						return "mainSkill";
+					case ("Pharmacist"):
+						return "idPharmacy";
+				}
+		}
+		return null;
+	}
+	
+	public boolean updateData(String nick, String role, String field, String newdata) {
+		int id = this.getIdUniqueByNick(nick);
+		Connection connection = ConnectionSingleton.getInstance();
+
+		try {
+			PreparedStatement preparedStatement;
+			//uso un foreach per i valor del Role enum
+			ResultSet res = null;
+			if (Integer.parseInt(field) < 4) {
+				role = "MUser";
+			}
+			String query_added_table = QUERY_UPDATE.replace("$tableName", role);
+			String query_added_column = query_added_table.replace("$columnName", this.getField(field, role));
+			preparedStatement = connection.prepareStatement(query_added_column);
+			preparedStatement.setString(1, newdata);
+			preparedStatement.setInt(2, id);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return false;
+		} catch (InsertUserException e1) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e1);
+			return false;
+		}
 	}
 
 	public List<String> getUserRole(String nick) {

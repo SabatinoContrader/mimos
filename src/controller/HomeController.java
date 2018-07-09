@@ -54,6 +54,9 @@ public class HomeController implements Controller {
 
 	private void internalDP(String choice, String nick, String typeUser) {
 		switch (choice) {
+		case ("1"):
+			gArray = homeService.getDataUser(nick, typeUser);
+			break;
 		case ("3"):
 			gArray = homeService.getDataUser(nick, typeUser);
 			break;
