@@ -19,6 +19,7 @@ public class UserController implements Controller {
     private UserService userService;
     private DispatcherParam dp;
     private Request request;
+    private boolean succ;
     
     public UserController() {
     	
@@ -53,20 +54,26 @@ public class UserController implements Controller {
             	dp =  new DispatcherParam("Home", this.request);
                 break;
             case "updateData":
-            	boolean succ = userService.updateData(request.getString("nomeUtente"),
+            	succ = userService.updateData(request.getString("nomeUtente"),
             			request.getString("typeUser"),
             			request.getString("field"),
             			request.getString("newData"));
-            	if (succ) {
-                    this.request.put("mode", "selected");
-                	this.request.put("typeUser", request.getString("typeUser"));
-                	this.request.put("nomeUtente", request.getString("nomeUtente"));
-            		this.request.put("success", succ);
-                	dp =  new DispatcherParam("Home", this.request);
-            	}
-            	else {
-            		
-            	}
+                this.request.put("mode", "selected");
+            	this.request.put("typeUser", request.getString("typeUser"));
+            	this.request.put("nomeUtente", request.getString("nomeUtente"));
+        		this.request.put("success", succ);
+            	dp =  new DispatcherParam("Home", this.request);
+            	break;
+            case "addRole":
+            	succ = userService.addRole(request.getString("nomeUtente"),
+            			request.getString("typeUser"),
+            			request.getString("field"),
+            			request.getString("newData"));
+                this.request.put("mode", "selected");
+            	this.request.put("typeUser", request.getString("typeUser"));
+            	this.request.put("nomeUtente", request.getString("nomeUtente"));
+        		this.request.put("success", succ);
+            	dp =  new DispatcherParam("Home", this.request);
             	break;
         }
         MainDispatcher.getInstance().callView(dp.getClassN(), dp.getRequest());

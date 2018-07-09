@@ -12,6 +12,7 @@ public class HomeView implements View {
 	private Request request;
 	private DispatcherParam dp;
 	private String nick, role;
+	boolean succ;
 
 	public void showResults(Request request) {
 		this.request = request;
@@ -19,17 +20,25 @@ public class HomeView implements View {
 			System.out.println("\n" + "-----DASHBOARD MIMOS-----" + "\n");
 			nick = request.getString("nomeUtente");
 			System.out.println("BENVENUTO " + nick + "\n");
-		}
+		} else
 		if (request.get("mode").toString().equals("select")) {
 			System.out.println("\n" + "Vuoi accedere come:" + "\n");
 			nick = request.getString("nomeUtente");
-		}
+		} else
 		if (request.get("mode").toString().equals("selected")) {
 			nick = request.getString("nomeUtente");
 			role = request.getString("typeUser");
+			try {
+				succ = Boolean.valueOf(request.getString("success"));
+			} catch (Exception e) {
+				return;
+				//e.printStackTrace();
+			}
+			if (!succ)
+				System.out.println("OPERAZIONE NON RISUCITA");
 			System.out.println(
 					"\n" + "-----OPZIONI " + request.getString("typeUser").toUpperCase() + " MIMOS-----" + "\n");
-		}
+		} else
 		if (request.get("mode").toString().equals("option")) {
 			nick = request.getString("nomeUtente");
 			role = request.getString("typeUser");
@@ -57,6 +66,7 @@ public class HomeView implements View {
 				try {
 					choice = Integer.parseInt(getInput());
 					this.request = new Request();
+					this.request.put("roles", roles);
 					this.request.put("nomeUtente", this.nick);
 					this.request.put("mode", "selected");
 					this.request.put("typeUser", roles.get(choice));
@@ -64,6 +74,7 @@ public class HomeView implements View {
 					System.out.println("SCELTA ERRATA");
 					// e.printStackTrace();
 					this.request = new Request();
+					this.request.put("roles", roles);
 					this.request.put("nomeUtente", this.nick);
 					this.request.put("mode", "select");
 					this.request.put("typeUser", roles);
@@ -100,6 +111,20 @@ public class HomeView implements View {
 						this.request.put("mode", "updateData");
 						dp = new DispatcherParam("User", "doControl", this.request);
 						break;
+					case ("2"):
+						ArrayList<String> othrole = this.showOtherRole(this.role);
+						choice = Integer.parseInt(getInput());
+						System.out.println("\n" + "Scrivi dato aggiuntivo (può essere vuoto):");
+						String optional = getInput();
+						this.chooseParameter(choice);
+						this.request = new Request();
+						this.request.put("nomeUtente", this.nick);
+						this.request.put("typeUser", othrole.get(choice));
+						this.request.put("newData", optional);
+						this.request.put("field", 4);
+						this.request.put("mode", "addRole");
+						dp = new DispatcherParam("User", "doControl", this.request);
+						break;
 					case ("3"):
 						this.showParameter((ArrayList<String>) request.get("dataUser"));
 						this.request = new Request();
@@ -108,6 +133,8 @@ public class HomeView implements View {
 						this.request.put("mode", "selected");
 						dp = new DispatcherParam("Home", "doControl", this.request);
 						break;
+					case ("4"):
+						dp = new DispatcherParam("Index", "doControl", null);
 				}
 				break;
 			case ("logout"):
@@ -119,22 +146,23 @@ public class HomeView implements View {
 		System.out.println("(1) Aggiorna Dati");
 		System.out.println("(2) Aggiungi Ruolo - ToDo");
 		System.out.println("(3) Guarda i tuoi dati");
+		System.out.println("(4) Logout");
 		for (Role role : Role.values()) {
 			if (role.Doctor.toString().equals(typeUser)) {
-				System.out.println("(4) Visualizza Misurazioni - ToDo");
+				System.out.println("(5) Visualizza Misurazioni - ToDo");
 				break;
 			}
 			if (role.Patient.toString().equals(typeUser)) {
-				System.out.println("(4) Effettua Una Misurazione - ToDo");
-				System.out.println("(5) Gaurda Tutte le Misurazioni - ToDo");
+				System.out.println("(5) Effettua Una Misurazione - ToDo");
+				System.out.println("(6) Gaurda Tutte le Misurazioni - ToDo");
 				break;
 			}
 			if (role.MAdmin.toString().equals(typeUser)) {
-				System.out.println("(4) Gaurda Tutti gli User - ToDo");
+				System.out.println("(5) Gaurda Tutti gli User - ToDo");
 				break;
 			}
 			if (role.Pharmacist.toString().equals(typeUser)) {
-				System.out.println("(4) Gaurda Tutte le Ricette - ToDo");
+				System.out.println("(5) Gaurda Tutte le Ricette - ToDo");
 				break;
 			}
 		}
@@ -148,6 +176,20 @@ public class HomeView implements View {
 			count++;
 		}
 		System.out.print("\n" + "Seleziona Ruolo (numero) : ");
+	}
+
+	private ArrayList<String> showOtherRole(String actrole) {
+		ArrayList<String> othRole = new ArrayList<>();
+		int count = 0;
+		for (Role role : Role.values()) {
+			if (!actrole.equals(role.toString())) {
+				System.out.println(role + " (" + count + ")");
+				othRole.add(role.toString());
+				count++;
+			}
+		}
+		System.out.print("\n" + "Seleziona Ruolo (numero) : ");
+		return othRole;
 	}
 
 	private void showParameter(ArrayList<String> param) {

@@ -17,7 +17,8 @@ public class UserDAO {
 
 	private final String QUERY_ALL = "select * from MUser";
 	private final String QUERY_INSERT_GENERIC = "insert into MUser (nick, psw, sName, lName) values (?,?,?,?)";
-	private String QUERY_INSERT_SPEC;
+	private String QUERY_INSERT_SPEC = "INSERT INTO mimos.$tableName (idUnique, $columnName) " + 
+			"values (?, ?)";
 	private final String QUERY_GETID = "select MUser.idUnique, MUser.nick from MUser";
 	private final String QUERY_VERIFY_NICK = "SELECT MUser.nick FROM $tableName "
 			+ "LEFT OUTER JOIN MUser ON MUser.idUnique = ?.IdUnique"
@@ -57,6 +58,29 @@ public class UserDAO {
 		return null;
 	}
 	
+	public boolean addRole(String nick, String role, String field, String newdata) {
+		int id = this.getIdUniqueByNick(nick);
+		Connection connection = ConnectionSingleton.getInstance();
+
+		try {
+			PreparedStatement preparedStatement;
+			ResultSet res = null;
+			String query_added_table = QUERY_INSERT_SPEC.replace("$tableName", role);
+			String query_added_column = query_added_table.replace("$columnName", this.getField(field, role));
+			preparedStatement = connection.prepareStatement(query_added_column);
+			preparedStatement.setString(2, newdata);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return false;
+		} catch (InsertUserException e1) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e1);
+			return false;
+		}
+	}
+	
 	public boolean updateData(String nick, String role, String field, String newdata) {
 		int id = this.getIdUniqueByNick(nick);
 		Connection connection = ConnectionSingleton.getInstance();
@@ -73,7 +97,7 @@ public class UserDAO {
 			preparedStatement = connection.prepareStatement(query_added_column);
 			preparedStatement.setString(1, newdata);
 			preparedStatement.setInt(2, id);
-			preparedStatement.executeUpdate();
+			preparedStatement.executeQuery();
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
