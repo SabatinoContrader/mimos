@@ -1,4 +1,4 @@
-package main.controller;
+-package main.controller;
 
 public class GestoreEccezioni {
     private static GestoreEccezioni ourInstance = new GestoreEccezioni();

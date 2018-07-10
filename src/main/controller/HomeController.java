@@ -1,6 +1,7 @@
 package main.controller;
 
 import main.MainDispatcher;
+import main.model.Utente;
 import main.service.LoginService;
 
 public class HomeController implements Controller {
@@ -12,15 +13,19 @@ public class HomeController implements Controller {
     }
 
     public void doControl(Request request) {
-        if (request != null) {
-            String nomeUtente = request.get("nomeUtente").toString();
+    	System.out.println();
+    	if (request != null) {
+            String user_name = request.get("user_name").toString();
             String password = request.get("password").toString();
-            if (loginService.login(nomeUtente, password))
+            Utente utente=loginService.login(user_name, password);
+            if (utente!=null) {
+            	request.put("utente", utente);
                 MainDispatcher.getInstance().callView("Home", request);
+                }
             else
                 MainDispatcher.getInstance().callAction("Login", "doControl", request);
         }
+       
         else MainDispatcher.getInstance().callView("Home", null);
-
     }
 }

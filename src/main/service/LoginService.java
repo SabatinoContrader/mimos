@@ -1,6 +1,7 @@
 package main.service;
 
 import main.dao.LoginDAO;
+import main.model.Utente;
 
 public class LoginService {
 
@@ -10,7 +11,7 @@ public class LoginService {
         this.loginDAO = new LoginDAO();
     }
 
-    public boolean login (String username, String password) {
-        return this.loginDAO.login(username, password);
+    public Utente login (String user_name, String password) {
+		return this.loginDAO.login(user_name,password);
     }
 }
