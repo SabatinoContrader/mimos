@@ -1,4 +1,4 @@
 package com.virtualpairprogrammers.services;
 
-public class UtenteService {
+public class UserService {
 }

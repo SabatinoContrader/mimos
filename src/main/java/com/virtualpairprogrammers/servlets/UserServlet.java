@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class UtenteServlet {
+public class UserServlet {
 
     public void service (HttpServletRequest request,
                          HttpServletResponse response)

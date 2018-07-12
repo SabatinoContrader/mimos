@@ -1,4 +1,15 @@
 package com.virtualpairprogrammers.dao;
 
-public class UtenteDao {
-         }
+import com.virtualpairprogrammers.model.User;
+
+public class UserDAO {
+
+	public UserDAO() {
+
+	}
+
+	public User getByNomeUtente(String username) {
+
+		return null;
+	}
+}
