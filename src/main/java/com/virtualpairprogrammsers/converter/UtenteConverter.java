@@ -3,12 +3,12 @@ package com.virtualpairprogrammsers.converter;
 import com.virtualpairprogrammers.dto.UtenteDTO;
 import com.virtualpairprogrammers.model.Utente;
 
-public class UserConverter implements Converter<Utente, UtenteDTO> {
+public class UtenteConverter implements Converter<Utente, UtenteDTO> {
 
 	private Utente user;
 	private UtenteDTO userDTO;
 	
-	public UserConverter() {
+	public UtenteConverter() {
 		
 	}
 

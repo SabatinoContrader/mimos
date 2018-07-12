@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="IndexServlet" method="post">
+	<form action="IndexServlet" method="post" name="selfRegisterform">
 		<h2>
 			Username: <input type="text" id="user" name="username">
 		</h2>
 		<h2>
-			Password: <input type="text" id="pass" name="password">
+			Password: <input type="password" id="pass" name="password">
 		</h2>
 		<h2>
 			Nome:<input type="text" name="nome">
