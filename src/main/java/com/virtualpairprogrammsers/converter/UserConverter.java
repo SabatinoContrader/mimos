@@ -1,31 +1,31 @@
 package com.virtualpairprogrammsers.converter;
 
-import com.virtualpairprogrammers.dto.UserDTO;
-import com.virtualpairprogrammers.model.User;
+import com.virtualpairprogrammers.dto.UtenteDTO;
+import com.virtualpairprogrammers.model.Utente;
 
-public class UserConverter implements Converter<User, UserDTO> {
+public class UserConverter implements Converter<Utente, UtenteDTO> {
 
-	private User user;
-	private UserDTO userDTO;
+	private Utente user;
+	private UtenteDTO userDTO;
 	
 	public UserConverter() {
 		
 	}
 
 	@Override
-	public User convertToEntity(UserDTO dto) {
+	public Utente convertToEntity(UtenteDTO dto) {
 
 		//se il costruttore lo prevede possiamo mettere direttamente i dati nel cotruttore
-		user = new User();
+		user = new Utente();
 		//metodi per il set da prendere dal dto come get
 		return user;
 	}
 
 	@Override
-	public UserDTO convertToDTO(User entity) {
+	public UtenteDTO convertToDTO(Utente entity) {
 
 		//se il costruttore lo prevede possiamo mettere direttamente i dati nel cotruttore
-		userDTO = new UserDTO();
+		userDTO = new UtenteDTO();
 		//metodi per il set da prendere dal dto come get
 		return userDTO;
 	}

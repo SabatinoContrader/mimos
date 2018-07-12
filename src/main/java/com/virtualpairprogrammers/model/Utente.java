@@ -1,8 +1,8 @@
 package com.virtualpairprogrammers.model;
 
-public class User {
+public class Utente {
 	
-	public User() {
+	public Utente() {
 		
 	}
 

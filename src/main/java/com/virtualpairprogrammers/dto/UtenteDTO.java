@@ -1,8 +1,8 @@
 package com.virtualpairprogrammers.dto;
 
-public class UserDTO {
+public class UtenteDTO {
 
-	public UserDTO() {
+	public UtenteDTO() {
 		
 	}
 

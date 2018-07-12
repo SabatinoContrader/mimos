@@ -7,12 +7,7 @@ import java.io.IOException;
 
 public class UserServlet {
 
-    public void service (HttpServletRequest request,
-                         HttpServletResponse response)
-            throws ServletException,IOException
-    {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
+	}
 }
-
-
