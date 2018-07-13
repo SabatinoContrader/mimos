@@ -12,13 +12,14 @@ public class Utente {
 	private Date data_nascita;
 	private String username;
 	private String password;
+	private String citta;
 
 	public Utente() {
 
 	}
 
 	public Utente(int id_utente, int id_ruolo, String nome, String cognome, String codice_fiscale, Date data_nascita,
-			String username, String password) {
+		String username, String password, String citta) {
 		this.setId_utente(id_utente);
 		this.setId_ruolo(id_ruolo);
 		this.setUsername(username);
@@ -27,6 +28,7 @@ public class Utente {
 		this.setData_nascita(data_nascita);
 		this.setNome(nome);
 		this.setPassword(password);
+		this.setCitta(citta);
 	}
 
 	public int getId_ruolo() {
@@ -91,5 +93,13 @@ public class Utente {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getCitta() {
+		return citta;
+	}
+
+	public void setCitta(String citta) {
+		this.citta = citta;
 	}
 }
