@@ -23,10 +23,6 @@ public class IndexServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("utente", null);
 
-		if (request == null) {
-			// gestiamo l'eccezione e rimandiamo alla index.jsp
-		}
-
 		switch (request.getParameter("pulsante")) {
 		case ("Login"):
 			System.out.println("sto nel login");
@@ -47,6 +43,7 @@ public class IndexServlet extends HttpServlet {
 			break;
 		case ("userRegister"):
 			System.out.println("sto nel user register");
+			//this.indexService.register(utente);
 			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			break;
 

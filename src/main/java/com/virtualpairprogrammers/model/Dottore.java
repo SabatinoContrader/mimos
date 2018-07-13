@@ -1,46 +1,32 @@
 package com.virtualpairprogrammers.model;
 
-import java.util.ArrayList;
-import java.util.Date;
+public final class Dottore {
 
-public final class Dottore extends Utente {
-
-	private String citta;
-	private ArrayList<String> specializzazioni;
-	
-	public Dottore(int id_utente, int id_ruolo, String nome, String cognome, String codice_fiscale, Date data_nascita,
-			String username, String password, String citta, ArrayList<String> specializzazioni) {
-		this.setId_utente(id_utente);
-		this.setId_ruolo(id_ruolo);
-		this.setUsername(username);
-		this.setCodice_fiscale(codice_fiscale);
-		this.setCognome(cognome);
-		this.setData_nascita(data_nascita);
-		this.setNome(nome);
-		this.setPassword(password);
-	}
+	private int id_utente, id_specialita;
 	
 	public Dottore() {
-		
+
 	}
-	public String getCitta() {
-		return citta;
+	
+	public Dottore(int id_utente, int id_specialita) {
+		this.setId_utente(id_utente);
+		this.setId_specialita(id_specialita);
 	}
 
-	public void setCitta(String citta) {
-		this.citta = citta;
+	public int getId_specialita() {
+		return id_specialita;
 	}
 
-	public ArrayList<String> getSpecializzazioni() {
-		return specializzazioni;
+	public void setId_specialita(int id_specialita) {
+		this.id_specialita = id_specialita;
 	}
 
-	public void setSpecializzazioni(ArrayList<String> specializzazioni) {
-		this.specializzazioni = specializzazioni;
+	public int getId_utente() {
+		return id_utente;
 	}
 
-	public void addSpecializzazione(String specializzazione) {
-		this.specializzazioni.add(specializzazione);
+	public void setId_utente(int id_utente) {
+		this.id_utente = id_utente;
 	}
 
 }

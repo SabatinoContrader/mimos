@@ -12,27 +12,11 @@ public class IndexService {
 	}
 
 	public boolean login(String username, String password) {
-		Utente utente = utenteDAO.getByNomeUtente(username);
-		if (utente == null) {
-			return false;
-		} else {
-			if (utente.getPassword().equals(password))
-				return true;
-			else
-				return false;
-		}
+		return utenteDAO.verifyEntry(username, password);
 	}
 
-	public boolean register(String username, String password) {
-		Utente utente = utenteDAO.getByNomeUtente(username);
-		if (utente == null) {
-			return false;
-		} else {
-			if (utente.getPassword().equals(password))
-				return true;
-			else
-				return false;
-		}
+	public boolean register(Utente utente) {
+		return utenteDAO.insertUser(utente);
 	}
 
 }

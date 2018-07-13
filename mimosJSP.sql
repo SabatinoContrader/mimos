@@ -1,4 +1,4 @@
-drop database mimosJSP;
+-- drop database mimosJSP;
 create database mimosJSP;
 
 create table mimosJSP.utenti (
@@ -16,10 +16,14 @@ create table mimosJSP.utenti (
  
 );
 
-insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta) values('1','admin','admin','admin','2010-01-01','admin','admin','Cantaura');
-insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta) values('2','salvatore','nastasi','salvo','2010-01-01','salvo','salvo','Messina');
-insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta) values('2','marco','polo','marco','2010-01-01','marco','marco','Catania');
-insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta) values('3','fabrizio','nastasi','fabri','2010-01-01','fabri','fabri','Catania');
+insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta)
+ values('1','admin','admin','admin','2010-01-01','admin','admin','Cantaura');
+insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta)
+ values('2','salvatore','nastasi','salvo','2010-01-01','salvo','salvo','Messina');
+insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta)
+ values('2','marco','polo','marco','2010-01-01','marco','marco','Catania');
+insert into mimosJSP.utenti (id_ruolo, nome, cognome, codice_fiscale, data_nascita, username, password, citta)
+ values('3','fabrizio','nastasi','fabri','2010-01-01','fabri','fabri','Catania');
 
 
 create table mimosJSP.misure (
@@ -36,7 +40,8 @@ create table mimosJSP.misure (
 
 );
 
-insert into mimosJSP.misure (id_paziente, pressione, battiti, temperatura, glicemia) values('3','12.9','120','33','80');
+insert into mimosJSP.misure (id_paziente, pressione, battiti, temperatura, glicemia)
+ values('3','12.9','120','33','80');
 
 create table mimosJSP.visite (
 
@@ -63,8 +68,10 @@ create table mimosJSP.specialita (
 
 );
 
-insert into mimosJSP.specialita (nome, descrizione) values('Cardiologia','Cardiologia');
-insert into mimosJSP.specialita (nome, descrizione) values('Ginecologia','Ginecologia');
+insert into mimosJSP.specialita (nome, descrizione)
+ values('Cardiologia','Cardiologia');
+insert into mimosJSP.specialita (nome, descrizione)
+ values('Ginecologia','Ginecologia');
 
 create table mimosJSP.dottore_specialita (
     id_dottore int,
