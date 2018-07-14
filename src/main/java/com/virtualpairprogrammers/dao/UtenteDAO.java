@@ -138,6 +138,35 @@ public class UtenteDAO {
 		return data;
 	}
 */
+	public Utente getSingleUser(String username) {
+		Utente user = null;
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			Statement statement = connection.createStatement();
+			String query_added_table = QUERY_ALL.replace("$tableName", "utenti");
+			ResultSet resultSet = statement.executeQuery(query_added_table);
+			while (resultSet.next()) {
+				user = new Utente();
+				user.setCitta(resultSet.getString("citta"));
+				user.setCodice_fiscale(resultSet.getString("codice_fiscale"));
+				user.setCognome(resultSet.getString("cognome"));
+				user.setData_nascita(resultSet.getDate("data_nascita"));
+				user.setId_ruolo(resultSet.getInt("id_ruolo"));
+				user.setNome(resultSet.getString("nome"));
+				user.setPassword(resultSet.getString("password"));
+				user.setUsername(resultSet.getString("username"));
+				user.setId_utente(resultSet.getInt("id_utente"));
+				if (user.getUsername().equals(username))
+					break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//non è ottimizzato e potrei fare una query specifica
+		//in un secondo momento lo faccio
+		return user;
+	}
+	
 	public ArrayList<Utente> getAllUsers() {
 		ArrayList<Utente> users = new ArrayList<>();
 		Utente user;

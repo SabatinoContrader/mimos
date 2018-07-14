@@ -44,7 +44,15 @@ public class IndexServlet extends HttpServlet {
 			if (this.indexService.login(nomeUtente, password)) {
 				session.setAttribute("utente", nomeUtente);
 				// response.sendRedirect("home.jsp");
-				getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
+				int role = this.indexService.getRole(nomeUtente);
+				switch (role) {
+				case (2):
+					getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
+					break;
+				case (3):
+					getServletContext().getRequestDispatcher("/homeDottore.jsp").forward(request, response);
+					break;
+				}
 			} else {
 				// response.sendRedirect("login.jsp");
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
@@ -65,14 +73,14 @@ public class IndexServlet extends HttpServlet {
 			utenteDTO.setUsername(request.getParameter("username"));
 			System.out.println(request.getParameter("data"));
 			try {
-				//formatter.parse(request.getParameter("data"))
+				// formatter.parse(request.getParameter("data"))
 				utenteDTO.setData_nascita(Date.valueOf(request.getParameter("data")));
 			} catch (Exception e) {
 				System.out.println("huston abbiamo un problema");
 				e.printStackTrace();
 			}
 			utente = utenteConverter.convertToEntity(utenteDTO);
-			//2 == paziente
+			// 2 == paziente
 			utente.setId_ruolo(2);
 			this.indexService.register(utente);
 			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);

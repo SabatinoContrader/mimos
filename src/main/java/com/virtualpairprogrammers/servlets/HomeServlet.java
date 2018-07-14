@@ -22,7 +22,7 @@ public class HomeServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		session.setAttribute("utente", null);
+		String username = (String) session.getAttribute("utente");
 
 		if (request == null) {
 			// gestiamo l'eccezione e rimandiamo alla home.jsp
@@ -30,8 +30,20 @@ public class HomeServlet extends HttpServlet {
 
 		switch (request.getParameter("pulsante")) {
 		case ("getAllMisurazioni"):
+
+			this.homeService.getAllMisurazioni(username);
+			getServletContext().getRequestDispatcher("/viewMisurazioni.jsp").forward(request, response);
 			break;
+		case ("goInsertMisurazione"):
+
+			getServletContext().getRequestDispatcher("/insertMisurazione.jsp").forward(request, response);
+			break;
+
 		case ("insertMisurazione"):
+
+			this.homeService.insertMisurazione(username);
+			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
+
 			break;
 		case ("insertCheckin"):
 			break;

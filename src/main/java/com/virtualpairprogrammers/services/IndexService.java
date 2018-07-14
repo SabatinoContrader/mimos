@@ -19,4 +19,7 @@ public class IndexService {
 		return utenteDAO.insertUser(utente);
 	}
 
+	public int getRole(String username) {
+		return utenteDAO.getUserRole(username);
+	}
 }
