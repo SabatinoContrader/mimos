@@ -2,6 +2,13 @@ package com.virtualpairprogrammers.model;
 
 public final class Dottore {
 
+	/*
+	 * la classe non afferisce ad una tabella nel db
+	 * secondo l'er questo modello corrisponde alla tabella derivata
+	 * dottore_specialita
+	 * le chiamate manipolano la 1-N N-1
+	 */
+	
 	private int id_utente, id_specialita;
 	
 	public Dottore() {

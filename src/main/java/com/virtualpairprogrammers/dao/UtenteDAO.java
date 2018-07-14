@@ -176,10 +176,12 @@ public class UtenteDAO {
 			preparedStatement = connection.prepareStatement(query_added_c2);
 			preparedStatement.setString(1, username);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			resultSet.next();
-			id = resultSet.getInt("id_utente");
+			while (resultSet.next())
+				id = resultSet.getInt("id_utente");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("no match on " + username);
+			return 0;
 		}
 		return id;
 	}
@@ -192,15 +194,16 @@ public class UtenteDAO {
 			// verifico se l'utente già c'è mediante nick
 			if (this.getIdByNick(utente.getUsername()) != 0)
 				throw new InsertUserException();
-			// creo il MUser
-			preparedStatement = connection.prepareStatement(QUERY_INSERT_GENERIC);
+			// creo l'utente
+			String query_added_table = QUERY_INSERT_GENERIC.replace("$tableName", "utenti");
+			preparedStatement = connection.prepareStatement(query_added_table);
 			preparedStatement.setInt(1, utente.getId_ruolo());
 			preparedStatement.setString(2, utente.getNome());
 			preparedStatement.setString(3, utente.getCognome());
 			preparedStatement.setString(4, utente.getCodice_fiscale());
 			preparedStatement.setDate(5, (Date) utente.getData_nascita());
-			preparedStatement.setString(6, utente.getPassword());
-			preparedStatement.setString(7, utente.getUsername());
+			preparedStatement.setString(6, utente.getUsername());
+			preparedStatement.setString(7, utente.getPassword());
 			preparedStatement.setString(8, utente.getCitta());
 			preparedStatement.execute();
 			id = this.getIdByNick(utente.getUsername());
@@ -208,6 +211,7 @@ public class UtenteDAO {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		} catch (InsertUserException e1) {
+			System.out.println("utente già registrato");
 			GestoreEccezioni.getInstance().gestisciEccezione(e1);
 			return false;
 		}

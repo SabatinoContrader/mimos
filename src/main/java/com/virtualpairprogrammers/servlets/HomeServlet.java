@@ -36,6 +36,7 @@ public class HomeServlet extends HttpServlet {
 		case ("insertCheckin"):
 			break;
 		case ("logout"):
+			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			break;
 
 		}

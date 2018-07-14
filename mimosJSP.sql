@@ -1,4 +1,4 @@
--- drop database mimosJSP;
+drop database mimosJSP;
 create database mimosJSP;
 
 create table mimosJSP.utenti (
@@ -73,6 +73,7 @@ insert into mimosJSP.specialita (nome, descrizione)
 insert into mimosJSP.specialita (nome, descrizione)
  values('Ginecologia','Ginecologia');
 
+-- dottore non esiste ma è solo una specializzazione della tabella unica sotto la voce id_ruolo 
 create table mimosJSP.dottore_specialita (
     id_dottore int,
     id_specialita int,

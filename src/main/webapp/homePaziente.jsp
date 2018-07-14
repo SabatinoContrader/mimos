@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>HOME</title>
+<title>HOME PAZIENTE</title>
 </head>
 <body>
 <body>
 	<h1>
 		Benvenuto
 		<%=request.getSession().getAttribute("utente")%></h1>
-	<h2>------- MENU TRADERS PLATFORM -------</h2>
+	<h2>------- DASHBOARD -------</h2>
 
 	<form action="HomeServlet" method="post" name="visualizzamisurazioniform">
 		<h3>VISUALIZZA LE MISURAZIONI</h3>

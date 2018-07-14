@@ -24,7 +24,10 @@
 			Codice Fiscale:<input type="text" name="codice">
 		</h2>
 		<h2>
-			Data di Nascita:<input type="date" name="data">
+			Città di residenza:<input type="text" name="citta">
+		</h2>
+		<h2>
+			Data di Nascita (yyyy-mm-dd):<input type="datetime" name="data">
 		</h2>
 		<button type="submit" value="userRegister" name="pulsante">Registrati</button>
 		<br>
