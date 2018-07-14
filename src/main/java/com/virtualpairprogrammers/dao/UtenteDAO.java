@@ -59,9 +59,10 @@ public class UtenteDAO {
 		ResultSet res = null;
 		try {
 			String query_added_table = QUERY_VERIFY_ID.replace("$tableName", "utenti");
-			String query_added_column = query_added_table.replace("$columnName", "id_utente");
-			preparedStatement = connection.prepareStatement(query_added_column);
-			preparedStatement.setInt(1, id);
+			String query_added_c1 = query_added_table.replace("$columnName_1", "id_ruolo");
+			String query_added_c2 = query_added_c1.replace("$columnName_2", "username");
+			preparedStatement = connection.prepareStatement(query_added_c2);
+			preparedStatement.setString(1, username);
 			res = preparedStatement.executeQuery();
 			res.next();
 			id = res.getInt("id_ruolo");
