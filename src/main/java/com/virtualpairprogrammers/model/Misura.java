@@ -15,13 +15,13 @@ public class Misura {
     public Misura() {}
     
     public Misura(int id_misura, int id_paziente, float pressione, int battiti, float temperatura, float glicemia, Date data) {
-    this.setId_misura(id_misura);
-    this.setId_paziente(id_paziente);
-    this.setPressione(pressione);
-    this.setBattiti(battiti);
-    this.setTemperatura(temperatura);
-    this.setGlicemia(glicemia);
-    this.setData(data);
+    this.id_misura = id_misura;
+    this.id_paziente = id_paziente;
+    this.pressione = pressione;
+    this.battiti = battiti;
+    this.temperatura = temperatura;
+    this.glicemia = glicemia;
+    this.data = data;
     }
 
 	public int getId_misura() {

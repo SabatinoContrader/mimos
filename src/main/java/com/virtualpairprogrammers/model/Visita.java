@@ -8,20 +8,20 @@ public class Visita {
     private int id_paziente;
     private int id_dottore;
     private Date data_visita;
-    private boolean stato;
+    private int stato;
     private String descrizione;
     private String diagnosi;
 
     public Visita() {}
     
-    public Visita(int id_visita, int id_paziente, int id_dottore, Date data_visita, Boolean stato, String descrizione, String diagnosi) {
-        this.setId_visita(id_visita);
-        this.setId_paziente(id_paziente);
-        this.setId_dottore(id_dottore);
-        this.setData_visita(data_visita);
-        this.setStato(stato);
-        this.setDescrizione(descrizione);
-        this.setDiagnosi(diagnosi);
+    public Visita(int id_visita, int id_paziente, int id_dottore, Date data_visita, int stato, String descrizione, String diagnosi) {
+        this.id_visita = id_visita;
+        this.id_paziente = id_paziente;
+        this.id_dottore = id_dottore;
+        this.data_visita = data_visita;
+        this.stato = stato;
+        this.descrizione = descrizione;
+        this.diagnosi = diagnosi;
     }
 
 	public int getId_visita() {
@@ -56,11 +56,11 @@ public class Visita {
 		this.data_visita = data_visita;
 	}
 
-	public boolean isStato() {
+	public int getStato() {
 		return stato;
 	}
 
-	public void setStato(boolean stato) {
+	public void setStato(int stato) {
 		this.stato = stato;
 	}
 
