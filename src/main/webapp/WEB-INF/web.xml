@@ -12,9 +12,19 @@
 		<servlet-class>com.virtualpairprogrammers.servlets.IndexServlet</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>HomeServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.HomeServlet</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>IndexServlet</servlet-name>
 		<url-pattern>/IndexServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>HomeServlet</servlet-name>
+		<url-pattern>/HomeServlet</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

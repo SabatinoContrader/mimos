@@ -32,7 +32,7 @@
 
 	<form action="HomeServlet" method="post" name="richiedivisitaform">
 		<h3>MODIFICA DATI PERSONALI</h3>
-		<input type="submit" value="insertCheckin" name="pulsante">
+		<input type="submit" value="gomodificaDati" name="pulsante">
 	</form>
 
 	<form action="HomeServlet" method="post" name="logoutform">

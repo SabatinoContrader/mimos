@@ -73,12 +73,14 @@ public class IndexServlet extends HttpServlet {
 			utenteDTO.setUsername(request.getParameter("username"));
 			System.out.println(request.getParameter("data"));
 			try {
-				// formatter.parse(request.getParameter("data"))
+				formatter.parse(request.getParameter("data"));
 				utenteDTO.setData_nascita(Date.valueOf(request.getParameter("data")));
 			} catch (Exception e) {
 				System.out.println("huston abbiamo un problema");
 				e.printStackTrace();
 			}
+			//t
+			//utenteDTO = (UtenteDTO) request.getAttribute("utenteDTO");
 			utente = utenteConverter.convertToEntity(utenteDTO);
 			// 2 == paziente
 			utente.setId_ruolo(2);

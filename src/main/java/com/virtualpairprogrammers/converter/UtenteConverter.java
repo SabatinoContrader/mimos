@@ -19,13 +19,14 @@ public class UtenteConverter implements Converter<Utente, UtenteDTO> {
 		 * che mediante switch potrebbe modificare il tipo di output della conversione
 		 * creando più o meno blank
 		 */
+		utente = new Utente();
+		utenteDTO = new UtenteDTO();
 	}
 
 	@Override
 	public Utente convertToEntity(UtenteDTO dto) {
 
 		//se il costruttore lo prevede possiamo mettere direttamente i dati nel cotruttore
-		utente = new Utente();
 		utente.setCitta(dto.getCitta());
 		utente.setCodice_fiscale(dto.getCodice_fiscale());
 		utente.setCognome(dto.getCognome());
@@ -42,14 +43,13 @@ public class UtenteConverter implements Converter<Utente, UtenteDTO> {
 	public UtenteDTO convertToDTO(Utente entity) {
 
 		//se il costruttore lo prevede possiamo mettere direttamente i dati nel cotruttore
-		utenteDTO = new UtenteDTO();
-		utenteDTO.setCitta(utente.getCitta());
-		utenteDTO.setCodice_fiscale(utente.getCodice_fiscale());
-		utenteDTO.setCognome(utente.getCognome());
-		utenteDTO.setData_nascita(utente.getData_nascita());
-		utenteDTO.setNome(utente.getNome());
-		utenteDTO.setPassword(utente.getPassword());
-		utenteDTO.setUsername(utente.getUsername());
+		utenteDTO.setCitta(entity.getCitta());
+		utenteDTO.setCodice_fiscale(entity.getCodice_fiscale());
+		utenteDTO.setCognome(entity.getCognome());
+		utenteDTO.setData_nascita(entity.getData_nascita());
+		utenteDTO.setNome(entity.getNome());
+		utenteDTO.setPassword(entity.getPassword());
+		utenteDTO.setUsername(entity.getUsername());
 		//metodi per il set da prendere dal dto come get
 		return utenteDTO;
 	}

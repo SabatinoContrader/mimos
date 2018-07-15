@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ include file = "userDTOstorage.jsp"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 <title>INSERISCI NUOVA MISURAZIONE</title>
 </head>
 <body>
+	<% this.user = (UtenteDTO) request.getAttribute("datiDTO");
+		
+	%>
 	<h1>
 		Salve 
 		<%=request.getSession().getAttribute("utente")%>

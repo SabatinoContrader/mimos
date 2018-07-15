@@ -28,18 +28,35 @@ public class UtenteDAO {
 
 	}
 
-	public boolean updateData(String username, String field, String newdata) {
+	public <T> boolean updateData(String username, String field, T newdata) {
 		int id = this.getIdByNick(username);
+		if (newdata == null) {
+			return false;
+		}
+		if (newdata.toString().equals("")) {
+			return false;
+		}
 		Connection connection = ConnectionSingleton.getInstance();
 
 		try {
 			PreparedStatement preparedStatement;
 			ResultSet res = null;
 			String query_added_table = QUERY_UPDATE.replace("$tableName", "utenti");
-			String query_added_c1 = query_added_table.replace("$columnName", field);
-			String query_added_c2 = query_added_c1.replace("$columnName", "id_utente");
+			String query_added_c1 = query_added_table.replace("$columnName_1", field);
+			String query_added_c2 = query_added_c1.replace("$columnName_2", "id_utente");
 			preparedStatement = connection.prepareStatement(query_added_c2);
-			preparedStatement.setString(1, newdata);
+			System.out.println(newdata.getClass().getName());
+			switch (newdata.getClass().getName()) {
+			case ("java.lang.String"):
+				preparedStatement.setString(1, (String) newdata);
+				break;
+			case ("java.sql.Date"):
+				preparedStatement.setDate(1, (Date) newdata);
+				break;
+			case ("Int"):
+				preparedStatement.setInt(1, (int) newdata);
+				break;
+			}
 			preparedStatement.setInt(2, id);
 			preparedStatement.executeUpdate();
 			return true;
