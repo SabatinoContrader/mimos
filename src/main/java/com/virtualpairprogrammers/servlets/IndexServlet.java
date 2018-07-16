@@ -47,10 +47,10 @@ public class IndexServlet extends HttpServlet {
 				int role = this.indexService.getRole(nomeUtente);
 				switch (role) {
 				case (2):
-					getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
+					getServletContext().getRequestDispatcher("/homeDottore.jsp").forward(request, response);
 					break;
 				case (3):
-					getServletContext().getRequestDispatcher("/homeDottore.jsp").forward(request, response);
+					getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
 					break;
 				}
 			} else {
@@ -61,6 +61,9 @@ public class IndexServlet extends HttpServlet {
 		case ("goRegister"):
 			System.out.println("vado in register.jsp");
 			getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+			break;
+		case ("indietroPaziente"):
+			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
 			break;
 		case ("userRegister"):
 			System.out.println("sto nel user register");
@@ -82,6 +85,7 @@ public class IndexServlet extends HttpServlet {
 			//t
 			//utenteDTO = (UtenteDTO) request.getAttribute("utenteDTO");
 			utente = utenteConverter.convertToEntity(utenteDTO);
+			
 			// 2 == paziente
 			utente.setId_ruolo(2);
 			this.indexService.register(utente);

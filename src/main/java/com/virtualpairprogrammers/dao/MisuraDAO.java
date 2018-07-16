@@ -36,9 +36,9 @@ public class MisuraDAO {
         List<Misura> misura = new ArrayList<>();
         Connection connection = ConnectionSingleton.getInstance();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_GET_MISURA);
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
             preparedStatement.setInt(1, id_paziente_);
-            ResultSet resultSet = preparedStatement.executeQuery(QUERY_ALL);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
        	    int id_misura = resultSet.getInt("id_misura");
        	    int id_paziente = resultSet.getInt("id_paziente");

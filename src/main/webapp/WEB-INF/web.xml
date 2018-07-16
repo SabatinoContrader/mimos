@@ -26,9 +26,29 @@
 		<servlet-name>HomeServlet</servlet-name>
 		<url-pattern>/HomeServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>MisuraServlet</display-name>
+		<servlet-name>MisuraServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.MisuraServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MisuraServlet</servlet-name>
+		<url-pattern>/MisuraServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>VisitaServlet</display-name>
+		<servlet-name>VisitaServlet</servlet-name>
+		<servlet-class>com.virtualpairprogrammers.servlets.VisitaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VisitaServlet</servlet-name>
+		<url-pattern>/VisitaServlet</url-pattern>
+	</servlet-mapping>
 
 	<session-config>
 		<session-timeout>4000</session-timeout>
 	</session-config>
-
 </web-app>
+

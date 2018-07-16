@@ -13,10 +13,9 @@
 		<%=request.getSession().getAttribute("utente")%></h1>
 	<h2>------- DASHBOARD -------</h2>
 
-	<form action="HomeServlet" method="post"
-		name="visualizzamisurazioniform">
+	<form action="MisuraServlet" method="post">
 		<h3>VISUALIZZA LE MISURAZIONI</h3>
-		<input type="submit" value="getAllMisurazioni" name="pulsante">
+		<input type="submit" value="getAllMisura" name="pulsante">
 	</form>
 
 	<form action="HomeServlet" method="post"
@@ -27,7 +26,7 @@
 
 	<form action="HomeServlet" method="post" name="richiedivisitaform">
 		<h3>RICHIEDI VISITA</h3>
-		<input type="submit" value="insertCheckin" name="pulsante">
+		<input type="submit" value="insertVisita" name="pulsante">
 	</form>
 
 	<form action="HomeServlet" method="post" name="modificaDatiform">

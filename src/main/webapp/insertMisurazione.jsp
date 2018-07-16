@@ -16,21 +16,23 @@
 		<%=request.getSession().getAttribute("utente")%>
 		inserisci i campi relativi alla misurazione
 	</h1>
-	<form action="HomeServlet" method="post" name="selfMeasurementInsertform">
+	<form action="MisuraServlet" method="post" name="selfMeasurementInsertform">
 		<h2>
-			Pressione: <input type="text" id="pressione" name="pressione">
+			Pressione: <input  type=number step=0.01 min="0" id="pressione" name="pressione">
 		</h2>
 		<h2>
-			Battiti: <input type="text" id="battiti" name="battiti">
+			Battiti: <input  type=number id="battiti" min="0" name="battiti">
 		</h2>
 		<h2>
-			Temperatura:<input type="text" name="temperatura" name="temperatura">
+			Temperatura:<input  type=number step=0.01 min="0" name="temperatura">
 		</h2>
 		<h2>
-			Glicemia:<input type="text" name="glicemia" name="glicemia">
+			Glicemia:<input  type=number step=0.01 min="0" name="glicemia">
 		</h2>
-		<button type="submit" value="userRegister" name="pulsante">Registrati</button>
+		<button type="submit" value="insertMisura" name="pulsante">Registrare</button>
 		<br>
 	</form>
+	<br>
+	<a href="HomeServlet?pulsante=indietroPaziente"><button  type="button">Indietro</button></a>
 </body>
 </html>

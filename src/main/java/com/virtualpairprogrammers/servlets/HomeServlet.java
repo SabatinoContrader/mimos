@@ -15,6 +15,10 @@ import com.virtualpairprogrammers.services.HomeService;
 
 public class HomeServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private HomeService homeService;
 	private Utente utente;
 	private UtenteDTO utenteDTO;
@@ -32,10 +36,9 @@ public class HomeServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String username = (String) session.getAttribute("utente");
-
-		if (request == null) {
+		/*	if (request == null) {
 			// gestiamo l'eccezione e rimandiamo alla home.jsp
-		}
+		}*/
 
 		switch (request.getParameter("pulsante")) {
 		case ("homePaziente"):
@@ -44,20 +47,15 @@ public class HomeServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
 			break;
 		case ("getAllMisurazioni"):
-
 			this.homeService.getAllMisurazioni(username);
-			getServletContext().getRequestDispatcher("/viewMisurazioni.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/allMisura.jsp").forward(request, response);
 			break;
-		case ("goInsertMisurazione"):
-
+		case ("insertMisurazione"):
 			getServletContext().getRequestDispatcher("/insertMisurazione.jsp").forward(request, response);
 			break;
-
-		case ("insertMisurazione"):
-
+		case ("ginsertMisurazione"):
 			this.homeService.insertMisurazione(username);
 			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
-
 			break;
 		case ("insertCheckin"):
 
@@ -97,7 +95,13 @@ public class HomeServlet extends HttpServlet {
 			utenteDTO = utenteConverter.convertToDTO(utente);
 			request.setAttribute("utenteDTO", utenteDTO);
 			getServletContext().getRequestDispatcher("/visualizzaDati.jsp").forward(request, response);
-			
+			break;
+		case ("insertVisita"):
+			this.homeService.insertMisurazione(username);
+			getServletContext().getRequestDispatcher("/insertVisita.jsp").forward(request, response);
+			break;
+		case ("indietroPaziente"):
+			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
 			break;
 		case ("logout"):
 			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);

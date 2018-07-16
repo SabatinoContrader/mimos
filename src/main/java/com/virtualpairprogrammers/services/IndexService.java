@@ -22,4 +22,9 @@ public class IndexService {
 	public int getRole(String username) {
 		return utenteDAO.getUserRole(username);
 	}
+	
+	public int getIdByNick(String username) {
+		return utenteDAO.getIdByNick(username);
+	}
 }
+
