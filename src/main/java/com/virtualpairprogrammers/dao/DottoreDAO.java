@@ -15,10 +15,10 @@ public class DottoreDAO {
 	private final String QUERY_INSERT_SKILL = "insert into mimosJSP.$tableName "
 			+ "($columnName_1, $columnName_2) "
 			+ "values (?, ?)";
-	private final String QUERY_ALL_SKILLS_UNIQUE = "select $columnName_1 "
+	private final String QUERY_ALL_SKILLS_UNIQUE = "select mimosJSP.$tableName_1.$tableColumn_1 "
 			+ "from mimosJSP.$tableName_1 "
-			+ "LEFT OUTER JOIN mimosJSP.$tableName_2 ON mimosJSP.$tableName_1.$columnName2 = mimosJSP.$tableName_2.$columnName_2 "
-			+ "WHERE mimosJSP.$tableName_1.$columnName_2 = ?";
+			+ "LEFT OUTER JOIN mimosJSP.$tableName_2 ON mimosJSP.$tableName_1.$tableColumn_1 = mimosJSP.$tableName_2.$tableColumn_1 "
+			+ "WHERE mimosJSP.$tableName_2.$tableColumn_2 = ?";
 
 	public DottoreDAO() {
 
@@ -36,11 +36,11 @@ public class DottoreDAO {
 			String query_added_c2 = query_added_c1.replace("$tableColumn_2", "id_dottore");;
 			PreparedStatement preparedStatement = connection.prepareStatement(query_added_c2);
 			preparedStatement.setInt(1, id_dottore);
-			ResultSet resultSet = preparedStatement.executeQuery(query_added_c2);
+			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				doctor = new Dottore();
 				doctor.setId_specialita(resultSet.getInt("id_specialita"));
-				doctor.setId_utente(resultSet.getInt("id_dottore"));
+				doctor.setId_utente(id_dottore);
 				doctors.add(doctor);
 			}
 		} catch (SQLException e) {

@@ -42,6 +42,10 @@ public class HomeService {
 		
 		return false;
 	}
+
+	public int getRole(String username) {
+		return utenteDAO.getUserRole(username);
+	}
 	
 	public ArrayList<String> getDoctorSkills(String username) {
 		ArrayList<Dottore> dottore = new ArrayList<>();

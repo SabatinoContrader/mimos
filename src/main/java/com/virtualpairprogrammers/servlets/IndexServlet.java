@@ -35,6 +35,7 @@ public class IndexServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("utente", null);
+		session.setAttribute("role", null);
 
 		switch (request.getParameter("pulsante")) {
 		case ("Login"):
@@ -43,6 +44,8 @@ public class IndexServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			if (this.indexService.login(nomeUtente, password)) {
 				session.setAttribute("utente", nomeUtente);
+				session.setAttribute("role", 
+						indexService.getRole(nomeUtente));
 				// response.sendRedirect("home.jsp");
 				int role = this.indexService.getRole(nomeUtente);
 				switch (role) {

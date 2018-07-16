@@ -1,6 +1,7 @@
 package com.virtualpairprogrammers.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,14 +37,20 @@ public class HomeServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String username = (String) session.getAttribute("utente");
-		/*	if (request == null) {
-			// gestiamo l'eccezione e rimandiamo alla home.jsp
-		}*/
+		int role = (int) session.getAttribute("role");
+		/*
+		 * if (request == null) { // gestiamo l'eccezione e rimandiamo alla home.jsp }
+		 */
 
 		switch (request.getParameter("pulsante")) {
+		case ("homeDottore"):
+			// da qui posso creare una request con un messaggio all'interno
+			// da implementare
+			getServletContext().getRequestDispatcher("/homeDottore.jsp").forward(request, response);
+			break;
 		case ("homePaziente"):
-			//da qui posso creare una request con un messaggio all'interno
-			//da implementare
+			// da qui posso creare una request con un messaggio all'interno
+			// da implementare
 			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
 			break;
 		case ("getAllMisurazioni"):
@@ -78,23 +85,35 @@ public class HomeServlet extends HttpServlet {
 			homeService.updateField(username, "codice_fiscale", utente.getCodice_fiscale());
 			homeService.updateField(username, "cognome", utente.getCognome());
 			homeService.updateField(username, "nome", utente.getNome());
-			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
-			
+			switch (role) {
+			case (2):
+				getServletContext().getRequestDispatcher("/homeDottore.jsp").forward(request, response);
+				break;
+			case (3):
+				getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
+				break;
+			}
+
 			break;
 		case ("visualizzaDati"):
 			utente = homeService.getSingleUser(username);
 			utenteDTO = new UtenteDTO();
 			/*
-			utenteDTO.setCitta(this.utente.getCitta());
-			utenteDTO.setCodice_fiscale(this.utente.getCodice_fiscale());
-			utenteDTO.setCognome(this.utente.getCognome());
-			utenteDTO.setNome(this.utente.getNome());
-			utenteDTO.setPassword(this.utente.getPassword());
-			utenteDTO.setUsername(this.utente.getUsername());
-			*/
+			 * utenteDTO.setCitta(this.utente.getCitta());
+			 * utenteDTO.setCodice_fiscale(this.utente.getCodice_fiscale());
+			 * utenteDTO.setCognome(this.utente.getCognome());
+			 * utenteDTO.setNome(this.utente.getNome());
+			 * utenteDTO.setPassword(this.utente.getPassword());
+			 * utenteDTO.setUsername(this.utente.getUsername());
+			 */
 			utenteDTO = utenteConverter.convertToDTO(utente);
 			request.setAttribute("utenteDTO", utenteDTO);
 			getServletContext().getRequestDispatcher("/visualizzaDati.jsp").forward(request, response);
+			break;
+		case ("visualizzaSkills"):
+			ArrayList<String> s = homeService.getDoctorSkills(username);
+			request.setAttribute("skills", s);
+			getServletContext().getRequestDispatcher("/visualizzaSkills.jsp").forward(request, response);
 			break;
 		case ("insertVisita"):
 			this.homeService.insertMisurazione(username);

@@ -31,7 +31,7 @@ public class SpecialitaDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			//Statement statement = connection.createStatement();
-			String query_added_t1 = QUERY_ALL_SKILLS.replace("$tableName_1", "specialita");
+			String query_added_t1 = QUERY_ALL_SKILLS.replace("$tableName", "specialita");
 			PreparedStatement preparedStatement = connection.prepareStatement(query_added_t1);
 			ResultSet resultSet = preparedStatement.executeQuery(query_added_t1);
 			while (resultSet.next()) {
