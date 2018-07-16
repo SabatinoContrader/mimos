@@ -30,9 +30,14 @@
 		<input type="submit" value="insertCheckin" name="pulsante">
 	</form>
 
-	<form action="HomeServlet" method="post" name="richiedivisitaform">
+	<form action="HomeServlet" method="post" name="modificaDatiform">
 		<h3>MODIFICA DATI PERSONALI</h3>
 		<input type="submit" value="gomodificaDati" name="pulsante">
+	</form>
+
+	<form action="HomeServlet" method="post" name="visualizzaDatiform">
+		<h3>VISUALIZZA DATI PERSONALI</h3>
+		<input type="submit" value="visualizzaDati" name="pulsante">
 	</form>
 
 	<form action="HomeServlet" method="post" name="logoutform">

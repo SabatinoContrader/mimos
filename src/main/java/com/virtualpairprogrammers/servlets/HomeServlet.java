@@ -38,6 +38,11 @@ public class HomeServlet extends HttpServlet {
 		}
 
 		switch (request.getParameter("pulsante")) {
+		case ("homePaziente"):
+			//da qui posso creare una request con un messaggio all'interno
+			//da implementare
+			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
+			break;
 		case ("getAllMisurazioni"):
 
 			this.homeService.getAllMisurazioni(username);
@@ -76,7 +81,23 @@ public class HomeServlet extends HttpServlet {
 			homeService.updateField(username, "cognome", utente.getCognome());
 			homeService.updateField(username, "nome", utente.getNome());
 			getServletContext().getRequestDispatcher("/homePaziente.jsp").forward(request, response);
-
+			
+			break;
+		case ("visualizzaDati"):
+			utente = homeService.getSingleUser(username);
+			utenteDTO = new UtenteDTO();
+			/*
+			utenteDTO.setCitta(this.utente.getCitta());
+			utenteDTO.setCodice_fiscale(this.utente.getCodice_fiscale());
+			utenteDTO.setCognome(this.utente.getCognome());
+			utenteDTO.setNome(this.utente.getNome());
+			utenteDTO.setPassword(this.utente.getPassword());
+			utenteDTO.setUsername(this.utente.getUsername());
+			*/
+			utenteDTO = utenteConverter.convertToDTO(utente);
+			request.setAttribute("utenteDTO", utenteDTO);
+			getServletContext().getRequestDispatcher("/visualizzaDati.jsp").forward(request, response);
+			
 			break;
 		case ("logout"):
 			getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);

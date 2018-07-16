@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>INSERISCI NUOVA MISURAZIONE</title>
+<title>MODIFICA DATI</title>
 </head>
 <body>
 	<%
