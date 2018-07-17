@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Getter
@@ -22,8 +21,13 @@ import java.util.Set;
 public class UtenteEntity implements Serializable {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5844994165384360679L;
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_utente")
 	private int idUtente;
     
@@ -50,5 +54,9 @@ public class UtenteEntity implements Serializable {
     
     @Column
 	private String citta;
+
+    @OneToMany
+    @JoinColumn(name = "id_utente")
+    private Set<DottoreEntity> dottoreEntitySet;
 
 }
