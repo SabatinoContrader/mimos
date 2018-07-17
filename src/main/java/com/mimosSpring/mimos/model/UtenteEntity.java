@@ -2,6 +2,8 @@ package com.mimosSpring.mimos.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Getter
 @Setter
@@ -55,8 +57,12 @@ public class UtenteEntity implements Serializable {
     @Column
 	private String citta;
 
-    @OneToMany
-    @JoinColumn(name = "id_utente")
-    private Set<DottoreEntity> dottoreEntitySet;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "dottore_specialita", 
+        joinColumns = { @JoinColumn(name = "id_utente") }, 
+        inverseJoinColumns = { @JoinColumn(name = "id_specialita") }
+    )
+    Set<SpecialitaEntity> specialita = new HashSet<>();
 
 }

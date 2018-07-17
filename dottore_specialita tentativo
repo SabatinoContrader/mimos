@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-
-import java.util.Set;
+import com.mimosSpring.mimos.model.UtenteEntity;
+import com.mimosSpring.mimos.model.SpecialitaEntity;;
 
 @Getter
 @Setter
@@ -17,8 +16,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "dottore_specialita")
-@IdClass(com.mimosSpring.mimos.model.DottoreEntity.Dottore_SpecialitaPK.class)
-public class DottoreEntity implements Serializable {
+@IdClass(com.mimosSpring.mimos.model.DottoreEntity_deprecated.Dottore_SpecialitaPK.class)
+@SecondaryTables({
+	@SecondaryTable(name = "utente"),
+	@SecondaryTable(name = "specialita")
+})
+public class DottoreEntity_deprecated implements Serializable {
 
 	/*
 	 * la classe non afferisce ad una tabella nel db secondo l'er questo modello
@@ -42,12 +45,12 @@ public class DottoreEntity implements Serializable {
 	private int idSpecialita;
 
     @ManyToOne
-    @JoinColumn(name = "id_utente")
-    private Set<UtenteEntity> utenteEntitySet;
+    @JoinColumn(name = "id_utente", referencedColumnName = "id_utente", table = "utente")
+    private UtenteEntity utenteEntity;
 
     @ManyToOne
-    @JoinColumn(name = "id_specialita")
-    private Set<SpecialitaEntity> specialitaEntitySet;
+    @JoinColumn(name = "id_specialita", referencedColumnName = "id_specialita", table = "specialita")
+    private SpecialitaEntity specialitaEntity;
 
 	public class Dottore_SpecialitaPK implements Serializable {
 
