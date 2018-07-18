@@ -36,7 +36,7 @@ public class SpecialitaEntity implements Serializable {
 	@Column(name = "descrizione_specialita")
 	private String descrizioneSpecialita;
 
-    @ManyToMany(mappedBy = "specialita")
-    private Set<UtenteEntity> utente = new HashSet<>();
+    @ManyToMany(mappedBy = "specialita", fetch=FetchType.EAGER)
+    private Set<UtenteEntity> utente = new HashSet<UtenteEntity>();
 
 }

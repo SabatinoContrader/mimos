@@ -6,6 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.mimosSpring.mimos.model.UtenteEntity;
 
+import com.mimosSpring.mimos.model.SpecialitaEntity;
+
 public interface UtenteRepository extends CrudRepository<UtenteEntity, Long> {
 	
     long count();
@@ -17,6 +19,10 @@ public interface UtenteRepository extends CrudRepository<UtenteEntity, Long> {
 
 	void delete(UtenteEntity utenteEntity);
 
+	void deleteByUsername(String username);
+
+	void deleteByIdUtente(int idUtente);
+
     UtenteEntity findByIdUtente(int idUtente);
     
     UtenteEntity findByUsername(String username);
@@ -27,7 +33,7 @@ public interface UtenteRepository extends CrudRepository<UtenteEntity, Long> {
     
     List<UtenteEntity> findByCitta(String citta);
     
-    List<UtenteEntity> findAllByIdSpecialita(int idSpecialita);
+    //List<UtenteEntity> findAllByIdSpecialita(int idSpecialita);
     
-    List<UtenteEntity> findAllByNomeSpecialita(String nomeSpecialita);
+    //void setByIdSpecialita(int idSpecialita);
 }

@@ -57,12 +57,12 @@ public class UtenteEntity implements Serializable {
     @Column
 	private String citta;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
     @JoinTable(
         name = "dottore_specialita", 
         joinColumns = { @JoinColumn(name = "id_utente") }, 
         inverseJoinColumns = { @JoinColumn(name = "id_specialita") }
     )
-    Set<SpecialitaEntity> specialita = new HashSet<>();
+    private Set<SpecialitaEntity> specialita = new HashSet<SpecialitaEntity>();
 
 }
