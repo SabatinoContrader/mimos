@@ -30,11 +30,11 @@ public class SpecialitaEntity implements Serializable {
 	@Column(name = "id_specialita")
 	private int idSpecialita;
 
-	@Column
-	private String nome;
+	@Column(name = "nome_specialita")
+	private String nomeSpecialita;
 
-	@Column
-	private String descrizione;
+	@Column(name = "descrizione_specialita")
+	private String descrizioneSpecialita;
 
     @ManyToMany(mappedBy = "specialita")
     private Set<UtenteEntity> utente = new HashSet<>();
