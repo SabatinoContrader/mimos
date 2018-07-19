@@ -2,12 +2,15 @@ package com.mimosSpring.mimos.DAO;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.mimosSpring.mimos.model.SpecialitaEntity;
 
-import com.mimosSpring.mimos.model.UtenteEntity;;
-
+@Repository
+@Transactional
 public interface SpecialitaRepository extends CrudRepository<SpecialitaEntity, Long> {
 	
     long count();
@@ -20,6 +23,10 @@ public interface SpecialitaRepository extends CrudRepository<SpecialitaEntity, L
     SpecialitaEntity save(SpecialitaEntity specialitaEntity);
 
 	void delete(SpecialitaEntity specialitaEntity);
+
+	void deleteByIdSpecialita(int idSpecialita);
+
+	void deleteByNomeSpecialita(String nomeSpecialita);
 
 	SpecialitaEntity findByIdSpecialita(int idSpecialita);
     

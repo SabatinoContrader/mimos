@@ -31,6 +31,9 @@ Creare solo le query che riguardano l'entità
 
 Per popolare tab1_tab2:
 
+  Session session = null;
+  Transaction transaction = null;
+  
  session = HibernateUtil.getSessionFactory().openSession();
  transaction = session.beginTransaction();
  transaction.begin();
