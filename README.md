@@ -56,3 +56,6 @@ Per popolare tab1_tab2:
  
  Per aggiungere colonne a tab1_tab2:
  cerca su internet altrimenti si crea l'Entity e si gioca con i @ManyToOne & @OneToMany
+ 
+ 
+ 

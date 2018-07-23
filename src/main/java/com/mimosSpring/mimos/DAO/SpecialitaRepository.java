@@ -32,7 +32,7 @@ public interface SpecialitaRepository extends CrudRepository<SpecialitaEntity, L
     
     int findIdSpecialitaByNomeSpecialita(String nomeSpecialita);
 
-    int findDescrizioneSpecialitaByIdSpecialita(int idSpecialita); 
+    int findDescrizioneSpecialitaByIdSpecialita(int idSpecialita);
     
     //List<SpecialitaEntity> findAllByIdUtente(int idUtente);
     

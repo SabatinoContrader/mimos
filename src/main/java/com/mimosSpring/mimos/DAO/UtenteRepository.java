@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mimosSpring.mimos.model.UtenteEntity;
@@ -29,12 +31,25 @@ public interface UtenteRepository extends CrudRepository<UtenteEntity, Long> {
     UtenteEntity findByIdUtente(int idUtente);
     
     UtenteEntity findByUsername(String username);
-    
-    int findIdUtenteByUsername(String username);
 
-    int findIdRuoloByUsername(String username); 
+    //giusto per conoscenza
+    //le query standard devono lavorare solo con la restituzione del tipo
+    //le querycome questa hanno bisogno di usare come nella classe java
+    //il nome della classe e il nome degli attributi
+    //quindi non pensare in SQL ma in JAVA!!!!!!!!!!
+    @Query("SELECT u.idUtente FROM UtenteEntity u where u.username = :username") 
+    int findIdUtenteByUsername(@Param("username") String username);
+    
+    //int findIdUtenteByUsername(String username);
+    
+    @Query("SELECT u.idRuolo FROM UtenteEntity u where u.username = :username") 
+    int findIdRuoloByUsername(@Param("username") String username);
+    
+    //int findIdRuoloByUsername(String username); 
     
     List<UtenteEntity> findByCitta(String citta);
+
+	UtenteEntity findByUsernameAndPassword(String username, String password);
     
     //List<UtenteEntity> findAllByIdSpecialita(int idSpecialita);
     

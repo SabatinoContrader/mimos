@@ -30,7 +30,7 @@ public class UtenteEntity implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_utente")
+    @Column(name="id_utente", unique=true, nullable=false)
 	private int idUtente;
     
     @Column
@@ -57,12 +57,27 @@ public class UtenteEntity implements Serializable {
     @Column
 	private String citta;
 
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
+    
+    /*
+     * direi che è dall'utente che va fatto il cascade perché
+     * al dottore posso aggiungere specialita
+     * quindi persist per la persistenza del dato
+     * e dato che il servizio di popolamento sarà solo in utente
+     * allora facciamo un bel merging
+     */
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE },
+    		fetch=FetchType.LAZY)
     @JoinTable(
         name = "dottore_specialita", 
         joinColumns = { @JoinColumn(name = "id_utente") }, 
         inverseJoinColumns = { @JoinColumn(name = "id_specialita") }
     )
-    private Set<SpecialitaEntity> specialita = new HashSet<SpecialitaEntity>();
+    
+    /*
+     * Set fa parte anche delle librerie di hibernate
+     * Ora uso le utils ma non so se va bene
+     */
+    
+    public Set<SpecialitaEntity> specialita = new HashSet<SpecialitaEntity>();
 
 }
