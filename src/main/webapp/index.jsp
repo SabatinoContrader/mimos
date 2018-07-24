@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +11,8 @@
 			name="username" placeholder="nome utente" required="true" type="text" />
 		<br> <label for="input-2">Password:</label> <br> <input
 			id="input-2" name="password" placeholder="password" required="true"
-			type="password" /> <br> <input type="submit" value="Submit"
-			form="login form" id="button-1" formmethod="post" />
+			type="password" /> <br> 
+			<input type="submit" value="Submit"	id="button-1"/>
 	</form>
 </body>
 </html>

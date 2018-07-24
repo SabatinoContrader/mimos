@@ -10,7 +10,7 @@
 <body>
 	<h1>
 		Benvenuto
-		<%=request.getSession().getAttribute("utente")%></h1>
+		<%=request.getSession().getAttribute("username")%></h1>
 	<h2>------- DASHBOARD -------</h2>
 
 	<form action="MisuraServlet" method="post">

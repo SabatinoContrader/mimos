@@ -1,4 +1,4 @@
-package com.mimosSpring.mimos.Controller;
+package com.mimosSpring.mimos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,24 +24,24 @@ public class LoginController {
     	this.utenteService = utenteService;
     }
 
-    @RequestMapping(value = "/mimos", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "index";
     }
-    
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         session.invalidate();
-        return "index";
+        return "homeDottore";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/homePaziente", method = RequestMethod.GET)
     public String home(Map<String, Object> model) {
-        return "home";
+        return "homePaziente";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam(name = "username", required = true) String username,
                         @RequestParam(name = "password", required = true) String password,
                         HttpServletRequest request,
@@ -60,13 +60,13 @@ public class LoginController {
             	//dottore
             	break;
             case (3):
-            	returnString = "homePaziente";
+            	returnString = "test";
             	//paziente
             	break;
             case (4):
             	break;
             }
-            //model.put("user", loginEntity);
+            model.put("utente", retrived);
             HttpSession session = request.getSession(true);
             session.setAttribute("username", username);
             session.setAttribute("utente", retrived);
