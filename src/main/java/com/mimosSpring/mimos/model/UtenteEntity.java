@@ -2,7 +2,9 @@ package com.mimosSpring.mimos.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -79,5 +81,13 @@ public class UtenteEntity implements Serializable {
      */
     
     public Set<SpecialitaEntity> specialita = new HashSet<SpecialitaEntity>();
-
+    
+    //  >>>Salvatore 
+    @OneToMany(
+            mappedBy = "utente", 
+            cascade = CascadeType.ALL, 
+            orphanRemoval = true
+        )
+    private List<MisuraEntity> misuraEntityList = new ArrayList<>();
+    //  <<<Salvatore
 }

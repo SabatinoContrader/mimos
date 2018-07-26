@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mimosSpring.mimos.model.MisuraEntity;
 import com.mimosSpring.mimos.model.UtenteEntity;
+import com.mimosSpring.mimos.service.MisuraService;
 import com.mimosSpring.mimos.service.UtenteService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +20,12 @@ import java.util.*;
 public class LoginController {
 
 	private UtenteService utenteService;
+	private MisuraService misuraService;
 	
     @Autowired
-    public LoginController(UtenteService utenteService) {
+    public LoginController(UtenteService utenteService, MisuraService misuraService) {
     	this.utenteService = utenteService;
+    	this.misuraService = misuraService;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -49,8 +53,8 @@ public class LoginController {
         UtenteEntity retrived = utenteService.findByUsernameAndPassword(username, password);
         System.out.println(retrived==null);
         System.out.println(username + " " + password);
+    	String returnString = "";
         if (retrived != null) {
-        	String returnString = "";
             int role = (int) utenteService.findIdRuoloByUsername(username);
             System.out.println(role);
             switch (role) {
@@ -60,9 +64,12 @@ public class LoginController {
             	//dottore
             	break;
             case (3):
-            	returnString = "test";
-            	//paziente
-            	break;
+            	//  >>>Salvatore 
+                HttpSession session = request.getSession(true);
+                session.setAttribute("username", username);
+                session.setAttribute("utente", retrived);
+        		return "redirect:/paziente/home";
+            	//  <<<Salvatore
             case (4):
             	break;
             }
@@ -72,9 +79,9 @@ public class LoginController {
             session.setAttribute("utente", retrived);
             return returnString;
         } else {
-            return "index";
+        	returnString = "index";
         }
-
+        return returnString;
     }
     /*
     public HashMap colorPanel(List<AutoEntity> autoEntitySet)

@@ -16,12 +16,11 @@
 
 <body>
 	<div class="container">
-		<h1>Benvenuto <%=request.getSession().getAttribute("username")%></h1>
+		<h1>Visita Medica</h1>
 		<br/>
-		<a class="btn btn-lg btn-primary submit-button" href="/paziente/misura">Inserire Misura</a>
-		<a class="btn btn-lg btn-primary submit-button" href="/paziente/visita">Nuova Visita Medica</a>
+		<a class="btn btn-lg btn-warning submit-button " href="/paziente/home">Indietro</a>
 		<br/>
-		<h2>Misure</h2>
+		<h2>Elenco di Medici</h2>
 		<table class="table table-striped table-medium">
 			<thead>
 				<tr>
