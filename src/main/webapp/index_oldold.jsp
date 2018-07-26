@@ -1,83 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
+  <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="vendor/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>MIMOS INDEX</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <%
-        session.setAttribute("method", "callAction");
-        session.setAttribute("servlet",null);
-        session.setAttribute("buttoncheck", false);
-    %>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Benvenuti in MI.MO.S</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form action="login" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password">
-                                </div>
-                                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-
-</body>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <title>MI.MO.S</title>
+  </head>
+  <body>
+	<form class="form-signin" action="/login" method="post">
+		<h1 class="h3 mb-3 font-weight-normal">Entra nella piattaforma</h1>
+		<label for="inputUsername" class="sr-only">Username</label>
+		<input
+			id="inputUsername" class="form-control" placeholder="Username"
+			required="required" autofocus="autofocus" type="text">
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input
+			id="inputPassword" class="form-control" placeholder="Password"
+			required="required" type="password">
+		<div class="checkbox mb-3">
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">
+			Sign-in</button>
+	</form>
+	<br>
+	<form class="form-signin" action="/register" method="post">
+		<h1 class="h3 mb-3 font-weight-normal">Sei nuovo?</h1>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">
+			Register</button>
+		<p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+	</form>
+  </body>
 </html>

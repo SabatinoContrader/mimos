@@ -58,13 +58,16 @@ public class LoginController {
             int role = (int) utenteService.findIdRuoloByUsername(username);
             System.out.println(role);
             switch (role) {
-            case (1):
+            case (0):
+            	List<UtenteEntity> utEntities = utenteService.findAll();
+                model.put("listaUtenti", utEntities);
+            	returnString = "homeAdmin";
             	break;
-            case (2):
-            	//dottore
+            case (1):
+
             	break;
             case (3):
-            	//  >>>Salvatore 
+  
                 HttpSession session = request.getSession(true);
                 session.setAttribute("username", username);
                 session.setAttribute("utente", retrived);
@@ -77,7 +80,6 @@ public class LoginController {
             HttpSession session = request.getSession(true);
             session.setAttribute("username", username);
             session.setAttribute("utente", retrived);
-            return returnString;
         } else {
         	returnString = "index";
         }
