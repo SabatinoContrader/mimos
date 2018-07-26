@@ -48,6 +48,8 @@ public interface UtenteRepository extends CrudRepository<UtenteEntity, Long> {
     //int findIdRuoloByUsername(String username); 
     
     List<UtenteEntity> findByCitta(String citta);
+    
+    List<UtenteEntity> findByIdRuolo(int ruolo);
 
 	UtenteEntity findByUsernameAndPassword(String username, String password);
     

@@ -49,32 +49,34 @@ public class LoginController {
         UtenteEntity retrived = utenteService.findByUsernameAndPassword(username, password);
         System.out.println(retrived==null);
         System.out.println(username + " " + password);
+    	String returnString = "";
         if (retrived != null) {
-        	String returnString = "";
             int role = (int) utenteService.findIdRuoloByUsername(username);
             System.out.println(role);
             switch (role) {
-            case (1):
+            case (0):
+            	List<UtenteEntity> utEntities = utenteService.findAll();
+                model.put("listaUtenti", utEntities);
+            	returnString = "homeAdmin";
             	break;
-            case (2):
+            case (1):
             	//dottore
             	break;
-            case (3):
-            	returnString = "test";
+            case (2):
             	//paziente
             	break;
-            case (4):
+            case (3):
+            	returnString = "homePaziente";
             	break;
             }
             model.put("utente", retrived);
             HttpSession session = request.getSession(true);
             session.setAttribute("username", username);
             session.setAttribute("utente", retrived);
-            return returnString;
         } else {
-            return "index";
+        	returnString = "index";
         }
-
+        return returnString;
     }
     /*
     public HashMap colorPanel(List<AutoEntity> autoEntitySet)

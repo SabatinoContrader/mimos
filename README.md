@@ -8,9 +8,21 @@ Dipendenze: WEB, Lombok, MySQL, H2
 il db e': mimos
 
 Installare Lombok da lombokproject come JAR da eseguire
+La dipendenza nel pom aggiunge il jar nelle maven dependencies
+Dato che non mi generava le get e set ho aggiungo manualmente la libreria esterna jar nel progetto
+
+Il pom genrato crea diversi problemi in merito al mapping, quindi copiare questo pom "frankenstein"
+-L'aggiunta principale ï¿½ in merito alla dipendenza del Tomcat Server che perï¿½ dovrebbe essere giï¿½ soddisfatta dallo starter web
+-Per la Connection lasciare la dipendenza che genera in maniera dipendente dalla versione del mysql
+-Attualmente ï¿½ basato sulla 2.0.2, ma se si volesse procede con la 2.1.0 l'application.properties vï¿½ implementato come segue:
+	.spring.jpa.properties.hibernate.jdbc.time_zone = UTC
+	.spring.datasource.url = jdbc:mysql://localhost:3306/NOMEDB?serverTimezone=UTC&useLegacyDatetimeCode=false
 
 
 Allora parliamo un po' delle tabelle derivate da un molti a molti
+Sto testando vari metodi per la gestione della tabella derivata senza che vi sia una enetitï¿½ associata
+Il codice che sto scrivendo anche se deprecato o non pertinente lo sto commentando
+Quanto sotto ï¿½ da aggiornare se tutto ï¿½ ok
 
 @ManyToMany
 
@@ -27,7 +39,7 @@ nella classe Tab2:
 private Set<Tab1Entity> tab1 = new HashSet<Tab1Entity>();
 
 Nelle rispettive Repository:
-Creare solo le query che riguardano l'entità
+Creare solo le query che riguardano l'entitï¿½
 
 Per popolare tab1_tab2:
 
