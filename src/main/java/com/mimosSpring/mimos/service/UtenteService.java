@@ -55,11 +55,11 @@ public class UtenteService {
 		this.utenteRepository.delete(utenteEntity);
 	}
 
-	public boolean deleteByIdUtente(int idUtente) {
+	public int deleteByIdUtente(int idUtente) {
 		return this.utenteRepository.deleteByIdUtente(idUtente);
 	}
 
-	public boolean deleteByUsername(String username) {
+	public int deleteByUsername(String username) {
 		return this.utenteRepository.deleteByUsername(username);
 	}
 

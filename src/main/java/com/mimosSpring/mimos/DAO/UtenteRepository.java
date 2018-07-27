@@ -24,9 +24,9 @@ public interface UtenteRepository extends CrudRepository<UtenteEntity, Long> {
 
 	void delete(UtenteEntity utenteEntity);
 
-	boolean deleteByUsername(String username);
+	int deleteByUsername(String username);
 
-	boolean deleteByIdUtente(int idUtente);
+	int deleteByIdUtente(int idUtente);
 
     UtenteEntity findByIdUtente(int idUtente);
     

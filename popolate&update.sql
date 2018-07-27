@@ -4,4 +4,7 @@ INSERT INTO `mimos`.`utente` (`citta`, `codice_fiscale`, `cognome`, `data_nascit
 INSERT INTO `mimos`.`utente` (`citta`, `codice_fiscale`, `cognome`, `data_nascita`, `id_ruolo`, `nome`, `password`, `username`) VALUES ('bari', 'asdafs', 'rosalia', '1988-02-20', '2', 'mariapia', 'punk', 'daft');
 INSERT INTO `mimos`.`utente` (`citta`, `codice_fiscale`, `cognome`, `data_nascita`, `id_ruolo`, `nome`, `password`, `username`) VALUES ('bari', 'ajfjeksk', 'anna', '1988-02-11', '1', 'palindroma', 'floyd', 'pink');
 UPDATE `mimos`.`utente` SET `cognome` = 'antonio', `data_nascita` = '1988-02-21', `nome` = 'ciolla' WHERE (`id_utente` = '1');
+INSERT INTO `mimos`.`utente` (`citta`, `codice_fiscale`, `cognome`, `data_nascita`, `id_ruolo`, `nome`, `password`, `username`) VALUES ('fsdf', 'sdfasdf', 'sadfasdf', '1999-10-10', '3', 'dsfg', 'dfsg', 'dfgsg');
+INSERT INTO `mimos`.`utente` (`citta`, `codice_fiscale`, `cognome`, `data_nascita`, `id_ruolo`, `nome`, `password`, `username`) VALUES ('dsfgsdfg', 'dsfg', 'dfg', '1999-10-10', '3', 'asfasf', 'sdds', 'ssss');
+INSERT INTO `mimos`.`utente` (`citta`, `codice_fiscale`, `cognome`, `data_nascita`, `id_ruolo`, `nome`, `password`, `username`) VALUES ('sdfsdf', 'sdffff', 'sfsdfsdf', '1999-10-10', '3', 'sdfsdf', 'sdsd', 'sdfsdf');
 

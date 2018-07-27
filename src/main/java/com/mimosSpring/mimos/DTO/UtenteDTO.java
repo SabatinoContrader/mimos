@@ -11,6 +11,7 @@ public class UtenteDTO{
 	private String username;
 	private String password;
 	private String citta;
+	private int id_ruolo;
 	
 	public UtenteDTO() {
 		
@@ -70,6 +71,14 @@ public class UtenteDTO{
 
 	public void setCitta(String citta) {
 		this.citta = citta;
+	}
+
+	public int getId_ruolo() {
+		return id_ruolo;
+	}
+
+	public void setId_ruolo(int id_ruolo) {
+		this.id_ruolo = id_ruolo;
 	}
 
 }

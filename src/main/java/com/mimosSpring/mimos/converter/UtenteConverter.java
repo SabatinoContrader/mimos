@@ -34,6 +34,7 @@ public class UtenteConverter implements Converter<UtenteEntity, UtenteDTO> {
 		utente.setNome(dto.getNome());
 		utente.setPassword(dto.getPassword());
 		utente.setUsername(dto.getUsername());
+		utente.setIdRuolo(dto.getId_ruolo());
 		
 		//non ho n� l'id ruolo n� l'id nel db
 		return utente;
@@ -50,6 +51,7 @@ public class UtenteConverter implements Converter<UtenteEntity, UtenteDTO> {
 		utenteDTO.setNome(entity.getNome());
 		utenteDTO.setPassword(entity.getPassword());
 		utenteDTO.setUsername(entity.getUsername());
+		utenteDTO.setId_ruolo(entity.getIdRuolo());
 		//metodi per il set da prendere dal dto come get
 		return utenteDTO;
 	}

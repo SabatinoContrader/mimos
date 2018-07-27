@@ -1,13 +1,13 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.mimosSpring.mimos.model.UtenteEntity"%>
+<%@ page import="com.mimosSpring.mimos.DTO.UtenteDTO"%>
+<%@ page import="java.util.Map"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="java.util.List"%>
-<%@ page import="com.mimosSpring.mimos.model.UtenteEntity"%>
-<%@ page import="java.util.Map"%>
 <meta charset="ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,48 +17,52 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<c:import var="listaPazientiPage" url="/listaPazienti.jsp" />
+<c:import var="listaDottoriPage" url="/listaDottori.jsp" />
+<c:import var="listaFarmacistiPage" url="/listaFarmacisti.jsp" />
 </head>
-<title>Insert title here</title>
+<title>MI.MO.S ADMIN DASHBOARD</title>
 </head>
 <body>
-	<form action="/Home/modificaUtente?id=${user.id_utente}" method="post">
-		<div class="container">
-			<h2>Table</h2>
-			<p>The .table-responsive class creates a responsive table which
-				will scroll horizontally on small devices (under 768px). When
-				viewing on anything larger than 768px wide, there is no difference:</p>
-			<div class="table-responsive">
-				<table class="table">
-					<caption>lista pazienti sistema</caption>
-					<thead>
-						<tr>
-							<th>USERNAME /</th>
-							<th>PASSWORD</th>
-							<th>NOME</th>
-							<th>COGNOME</th>
-							<th>DATA DI NASCITA</th>
-							<th>RESIDENZA</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${users}" var="user">
-							<tr>
-								<td>${user.username}</td>
-								<td>${user.password}</td>
-								<td>${user.nome}</td>
-								<td>${user.cognome}</td>
-								<td>${user.data_nascita}</td>
-								<td>${user.citta}</td>
-								<td><input type="submit" value="->>" id="button-1"
-									formmethod="post" /></td>
+	<form action="/home/Admin" method="post">
 
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">HOME</a></li>
+			<li><a data-toggle="tab" href="#menu1">PAZIENTI</a></li>
+			<li><a data-toggle="tab" href="#menu2">DOTTORI</a></li>
+			<li><a data-toggle="tab" href="#menu3">FARMACISTI</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<h3>DASHBOARD ADMINISTRATOR</h3>
+				<p>
+					Salve
+					<c:out value="<h4>${utente.nome} ${utente.cognome}</h4>"
+						escapeXml="false"></c:out>
+				</p>
+			</div>
+			<div id="menu1" class="tab-pane fade">
+				<h3>PAZIENTI</h3>
+				<p></p>
+				<!-- escapeXml="false" è necessario per parsare la pagina -->
+				<c:out value="${listaPazientiPage}" escapeXml="false" />
+			</div>
+			<div id="menu2" class="tab-pane fade">
+				<h3>DOTTORI</h3>
+				<c:out value="${listaDottoriPage}" escapeXml="false" />
+				<p></p>
+			</div>
+			<div id="menu3" class="tab-pane fade">
+				<h3>FARMACISTI</h3>
+				<c:out value="${listaFarmacistiPage}" escapeXml="false" />
+				<p></p>
 			</div>
 		</div>
+		<input type="submit" value="Logout" id="button-1"
+			formaction="/logout"
+			formmethod="get" />
 	</form>
 </body>
 </html>
