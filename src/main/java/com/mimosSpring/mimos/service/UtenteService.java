@@ -23,7 +23,7 @@ import javax.persistence.criteria.Root;
 @Service
 public class UtenteService {
 
-	// l'estensione della libreria utils di H2 è presa da un altro progetto
+	// l'estensione della libreria utils di H2 ï¿½ presa da un altro progetto
 	Session session = null;
 	Transaction transaction = null;
 
@@ -74,6 +74,13 @@ public class UtenteService {
 	public List<UtenteEntity> findAll() {
 		return this.utenteRepository.findAll();
 	}
+	
+	// >>>>Salvatore
+	public List<UtenteEntity> findByIdRuolo(int ruolo) {
+		return this.utenteRepository.findByIdRuolo(ruolo);
+	}
+	// <<<<Salvatore
+	
 
 	public UtenteEntity findByIdUtente(int idUtente) {
 		return this.utenteRepository.findByIdUtente(idUtente);
@@ -121,7 +128,7 @@ public class UtenteService {
 		if (this.specialitaRepository != null) {
 			try {
 				transaction = session.beginTransaction();
-				// il begin non so se è giusto
+				// il begin non so se ï¿½ giusto
 				transaction.begin();
 				UtenteEntity tUtente = (UtenteEntity) session.get(UtenteEntity.class, idUtente);
 				SpecialitaEntity tSpecialita = (SpecialitaEntity) session.get(SpecialitaEntity.class, idSpecialita);
@@ -188,8 +195,8 @@ public class UtenteService {
 		 */
 		
 		//i tentativi di prima sono nell'uso di Criterion di Hibernate
-		//qui sotto c'è invece l'uso delle librerie javax
-		//usate per l'insert nella tabella derivata senza avere entità @ManyToMany
+		//qui sotto c'ï¿½ invece l'uso delle librerie javax
+		//usate per l'insert nella tabella derivata senza avere entitï¿½ @ManyToMany
 		if (this.specialitaRepository != null) {
 			try {
 				transaction = session.beginTransaction();

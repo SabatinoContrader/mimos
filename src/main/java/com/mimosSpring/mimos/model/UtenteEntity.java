@@ -63,10 +63,10 @@ public class UtenteEntity implements Serializable {
 
     
     /*
-     * direi che è dall'utente che va fatto il cascade perché
+     * direi che ï¿½ dall'utente che va fatto il cascade perchï¿½
      * al dottore posso aggiungere specialita
      * quindi persist per la persistenza del dato
-     * e dato che il servizio di popolamento sarà solo in utente
+     * e dato che il servizio di popolamento sarï¿½ solo in utente
      * allora facciamo un bel merging
      */
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE },
@@ -91,5 +91,27 @@ public class UtenteEntity implements Serializable {
             orphanRemoval = true
         )
     private List<MisuraEntity> misuraEntityList = new ArrayList<>();
+    
+    //  >>>Salvatore 
+    @OneToMany(
+            mappedBy = "paziente", 
+            cascade = CascadeType.ALL, 
+            orphanRemoval = true
+        )
+    private List<VisitaEntity> visitaPazienteEntityList = new ArrayList<>();
+    
+    @OneToMany(
+            mappedBy = "dottore", 
+            cascade = CascadeType.ALL, 
+            orphanRemoval = true
+        )
+    private List<VisitaEntity> visitaDottoreEntityList = new ArrayList<>();
+    
+    @OneToMany(
+            mappedBy = "dottore", 
+            cascade = CascadeType.ALL, 
+            orphanRemoval = true
+        )
+    private List<OrarioEntity> orarioDottoreEntityList = new ArrayList<>();
     //  <<<Salvatore
 }
