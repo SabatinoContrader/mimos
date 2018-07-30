@@ -72,6 +72,8 @@ public class HomeController {
 		nuovoUtente.setIdRuolo(idRuolo);
 		nuovoUtente.setNome(nome);
 		utenteService.save(nuovoUtente);
+		List<UtenteEntity> utEntities = utenteService.findAll();
+		model.put("listaUtenti", utEntities);
 		return "homeAdmin";
 	}
 

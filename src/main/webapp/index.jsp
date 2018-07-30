@@ -29,7 +29,7 @@
 			<h1>Mi.Mo.S</h1>
 			<p>mirror monitoring system</p>
 		</div>
-
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">

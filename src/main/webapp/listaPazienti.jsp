@@ -44,7 +44,7 @@
 									<td>${user.dataNascita}</td>
 									<td>${user.citta}</td>
 									<td><input type="submit" value="->>" id="button-1"
-										formaction="home/modificaUtente?id_utente=${user.idUtente}"
+										formaction="/home/modificaUtente?id_utente=${user.idUtente}"
 										formmethod="post" /></td>
 								</tr>
 							</c:when>

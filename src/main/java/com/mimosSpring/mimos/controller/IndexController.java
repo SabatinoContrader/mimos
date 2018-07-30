@@ -50,7 +50,8 @@ public class IndexController {
 
 	@RequestMapping(value = "/registerIndex", method = RequestMethod.POST)
 	public String registerIndex(@RequestParam(name = "username", required = true) String username,
-			@RequestParam(name = "password", required = true) String password, HttpServletRequest request,
+			@RequestParam(name = "password", required = true) String password,
+			@RequestParam(name = "asAdmin", required = false) boolean asAdmin, HttpServletRequest request,
 			Map<String, Object> model) {
 		UtenteEntity retrived = utenteService.findByUsername(username);
 		System.out.println(retrived == null);
@@ -70,7 +71,7 @@ public class IndexController {
 			//ma nella request gli passo la stringa di riferimento
 			model.put("udId", udId);
 			model.put("utenteIncompleto", ud);
-			model.put("asAdmin", false);
+			model.put("asAdmin", asAdmin);
 			returnString = "register";
 		} else {
 			model.put("messaggio", "già registrato");

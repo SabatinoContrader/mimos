@@ -38,9 +38,16 @@
 			<div id="home" class="tab-pane fade in active">
 				<h3>DASHBOARD ADMINISTRATOR</h3>
 				<p>
-					Salve
+					<input type="hidden" class="form-control" id="psw"
+						required="required" value="" name="password" />
+					<input type="hidden" class="form-control" id="psw"
+						required="required" value="" name="username" />
 					<c:out value="<h4>${utente.nome} ${utente.cognome}</h4>"
 						escapeXml="false"></c:out>
+					<button type="submit" class="btn btn-default" formaction="/registerIndex?asAdmin=true"
+						formmethod="post">Aggiungi Utente</button>
+					<button type="submit" class="btn btn-default" formaction="/logout"
+						formmethod="get">Logout</button>
 				</p>
 			</div>
 			<div id="menu1" class="tab-pane fade">
@@ -60,9 +67,6 @@
 				<p></p>
 			</div>
 		</div>
-		<input type="submit" value="Logout" id="button-1"
-			formaction="/logout"
-			formmethod="get" />
 	</form>
 </body>
 </html>

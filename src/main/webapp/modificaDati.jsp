@@ -68,8 +68,8 @@
 			formaction="/home/deleteUtente" formmethod="post">Cancella
 			Utente</button>
 		<button type="submit" class="btn btn-default">Modifica i Dati</button>
-		<input type="submit" value="Esci" id="button-1" formaction="/home/Admin"
-			formmethod="post" />
+		<button type="submit" class="btn btn-default" formaction="/home/Admin"
+			formmethod="post">Esci</button>
 	</form>
 </body>
 </html>
